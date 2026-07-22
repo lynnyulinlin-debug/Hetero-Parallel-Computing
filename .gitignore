@@ -1,0 +1,16 @@
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Build outputs
+build/
+cmake-build-*/
+examples/ch09_reduce/reduce
+
+# Generated example artifacts
+examples/ch11_npu_deploy/artifacts/*
+!examples/ch11_npu_deploy/artifacts/README.md
+
+# Generated runtime caches
+examples/ch14_face_detection/__pycache__/
+examples/ch14_face_detection/stages/__pycache__/
