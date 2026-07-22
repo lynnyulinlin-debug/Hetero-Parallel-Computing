@@ -18,26 +18,12 @@
 
 - [使用说明](docs/USAGE.md)
 - [环境部署说明](docs/ENVIRONMENT.md)
-- [交接说明](docs/HANDOVER.md)
 
-> `README` 只负责总览和快速判断；更具体的运行方式看 `USAGE`，环境部署看 `ENVIRONMENT`，维护优先级看 `HANDOVER`。
+> `README` 只负责总览和快速判断；更具体的运行方式看 `USAGE`，环境部署看 `ENVIRONMENT`。
 
-## 发布阶段总览
+## 阅读方式
 
-| 阶段 | 范围 | 目标 |
-|---|---|---|
-| MVP | 第8-11章 | 主线闭环 |
-| Preview | 第1-11章 | 连续阅读 |
-| Alpha | 第1-12章 | 加入补充 |
-| Full | 第1-16章 | 完整收口 |
-
-## 章节关系
-
-一句话理解：第1-3章打底，第4-7章讲主机侧工程，第8-11章讲 GPU/NPU，第12章做补充，第13-16章做收口。
-
-分阶段发布和交接优先级见 [交接说明](docs/HANDOVER.md)。
-
-## 阅读路径图
+章节职责概览：第1-3章打底，第4-7章讲主机侧工程，第8-11章讲 GPU/NPU，第12章做补充，第13-16章做收口。当前发布阶段按 `MVP -> Preview -> Alpha -> Full` 递进。
 
 分层标记贯穿全书：**⚡️入门必读** · **🔬进阶探索** · **📋产品经理视角**
 
@@ -47,49 +33,28 @@
 | 算法工程师（AI部署） | 第8章 → 第9章 → 第11章 → 第13章 → 第14章 |
 | 📋 产品经理 | 第1章 → 第3章 → 第8章 → 第11章 → 第16章 |
 
-> 详细职责见上面的章节关系；v0.1 MVP 从第三篇（GPU+NPU 核心）起步。
+> v0.1 MVP 从第三篇（GPU+NPU 核心）起步。
 
-## 章节总览
+## 内容入口
 
-| 章 | 定位 | 状态 | 正文 |
+| 章 | 角色 | 主要内容 | 正文 |
 |---|---|---|---|
-| 第1章 | 原理起点 | 可交付 | [正文](docs/part1-foundations/01-why-parallel.md) |
-| 第2章 | 系统机制桥接 | 接近可交付 | [正文](docs/part1-foundations/02-os-parallel-basics.md) |
-| 第3章 | 通用模式语言 | 可交付 | [正文](docs/part1-foundations/03-parallel-patterns.md) |
-| 第4章 | CPU 多线程工程 | 接近可交付 | [正文](docs/part2-host-cpu/04-cpu-multithreading.md) |
-| 第5章 | 低侵入并行 | 接近可交付 | [正文](docs/part2-host-cpu/05-openmp.md) |
-| 第6章 | 核内并行优化 | 接近可交付 | [正文](docs/part2-host-cpu/06-simd.md) |
-| 第7章 | Host 职责收口 | 可交付 | [正文](docs/part2-host-cpu/07-cpu-in-hetero.md) |
-| 第8章 | 第三篇导读 | 可交付 | [正文](docs/part3-coprocessor/08-coprocessor-overview.md) |
-| 第9章 | GPU 主线核心 | 可交付 | [正文](docs/part3-coprocessor/09-gpu-cuda.md) |
-| 第10章 | 工具链实战 | 可交付 | [正文](docs/part3-coprocessor/10-gpu-profiling.md) |
-| 第11章 | 部署与接入模板 | 接近可交付 | [正文](docs/part3-coprocessor/11-npu-tpu.md) |
-| 第12章 | 桥接补充 | 接近可交付 | [正文](docs/part3-coprocessor/12-cross-platform.md) |
-| 第13章 | 方法论收口 | 可交付 | [正文](docs/part4-systems/13-performance-methodology.md) |
-| 第14章 | 系统案例 | 接近可交付 | [正文](docs/part4-systems/14-end-to-end-cases.md) |
-| 第15章 | 系统协同 | 可交付 | [正文](docs/part4-systems/15-system-coordination.md) |
-| 第16章 | 最终出口 | 可交付 | [正文](docs/part4-systems/16-decision-guide.md) |
-
-## 1-11章内容类型
-
-| 章 | 原理 | 工程 | 动手 | 发布时机 | 说明 |
-|---|---|---|---|---|---|
-| 第1章 | 高 | 低 | 低 | 先发 | 并行动机与理论上限 |
-| 第2章 | 高 | 中 | 中 | 先发 | 操作系统机制与任务队列 |
-| 第3章 | 高 | 低 | 低 | 先发 | 并行模式语言 |
-| 第4章 | 中 | 高 | 中 | 先发 | pthread 与线程池 |
-| 第5章 | 中 | 高 | 高 | 先发 | OpenMP 实战 |
-| 第6章 | 中 | 高 | 中 | 先发 | SIMD 与自动向量化 |
-| 第7章 | 中 | 高 | 高 | 先发 | Host 职责与数据搬运 |
-| 第8章 | 高 | 中 | 低 | 先发 | 协处理器与选型前导 |
-| 第9章 | 中 | 高 | 高 | 先发 | CUDA 主线与示例闭环 |
-| 第10章 | 中 | 高 | 高 | 先发 | Profiler 与性能定位 |
-| 第11章 | 高 | 高 | 中 | 先发 | NPU 原理、接入模板、部署边界 |
-
-> 读法建议：先看第1-3章建立概念，再看第4-7章打通 CPU 工程，再看第8-11章进入 GPU/NPU 与部署模板。  
-> 发布建议：第1-11章可以按 `preview/alpha` 先行发布；第2章和第11章后续再统一口径即可。
-
-## 目录
+| 第1章 | 并行基础 | 为什么需要并行计算 | [正文](docs/part1-foundations/01-why-parallel.md) |
+| 第2章 | 桥接 | 线程、同步和可见性基础 | [正文](docs/part1-foundations/02-os-parallel-basics.md) |
+| 第3章 | 并行基础 | 常见并行模式与抽象 | [正文](docs/part1-foundations/03-parallel-patterns.md) |
+| 第4章 | CPU 主机侧工程 | pthread、线程池与任务组织 | [正文](docs/part2-host-cpu/04-cpu-multithreading.md) |
+| 第5章 | CPU 主机侧工程 | OpenMP 并行写法与调度 | [正文](docs/part2-host-cpu/05-openmp.md) |
+| 第6章 | CPU 主机侧工程 | SIMD、向量化和 intrinsic | [正文](docs/part2-host-cpu/06-simd.md) |
+| 第7章 | 主机侧收口 | CPU 在异构系统中的职责 | [正文](docs/part2-host-cpu/07-cpu-in-hetero.md) |
+| 第8章 | 协处理器导读 | GPU/NPU 视角和选型前导 | [正文](docs/part3-coprocessor/08-coprocessor-overview.md) |
+| 第9章 | GPU 主线 | CUDA 编程模型和内存层次 | [正文](docs/part3-coprocessor/09-gpu-cuda.md) |
+| 第10章 | GPU 工具链 | profiler、时间线和瓶颈定位 | [正文](docs/part3-coprocessor/10-gpu-profiling.md) |
+| 第11章 | NPU 接入模板 | 模型转换、量化和板端部署 | [正文](docs/part3-coprocessor/11-npu-tpu.md) |
+| 第12章 | 跨平台补充 | OpenCL/SYCL 等跨平台模型 | [正文](docs/part3-coprocessor/12-cross-platform.md) |
+| 第13章 | 方法论收口 | 性能分析标准流程 | [正文](docs/part4-systems/13-performance-methodology.md) |
+| 第14章 | 系统案例 | 端到端异构案例与实验 | [正文](docs/part4-systems/14-end-to-end-cases.md) |
+| 第15章 | 系统协同 | CPU/GPU/NPU 协同和 DAG | [正文](docs/part4-systems/15-system-coordination.md) |
+| 第16章 | 决策出口 | 技术选型、成本和产品决策 | [正文](docs/part4-systems/16-decision-guide.md) |
 
 - [前言](docs/00-preface.md)
 - **第一篇 预备篇** — 并行计算基础 · [目录](docs/part1-foundations/)
@@ -98,7 +63,7 @@
 - **第四篇 综合篇** — 系统设计与实战 · [目录](docs/part4-systems/)
 - [附录](docs/appendix/)
 
-## 代码仓库
+## 运行与环境
 
 ```text
 docs/        教程正文
@@ -113,6 +78,6 @@ CMakeLists.txt 统一构建（可选）
 cd examples/ch09_vec_add && make run   # 无需 GPU，几秒内看到 CPU 串行 vs OpenMP 对比
 ```
 
-## 运行环境
+### 运行环境
 
 详见 [使用说明](docs/USAGE.md) 与 [附录A 实验环境搭建指南](docs/appendix/A-environment-setup.md)。最低要求：Linux + GCC；GPU 需要 CUDA Toolkit，NPU 需要对应开发板。
