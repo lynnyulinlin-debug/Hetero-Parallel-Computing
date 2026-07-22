@@ -1,0 +1,4 @@
+# 每行一个输入来源，后续可以替换为真实视频文件路径或摄像头标识
+samples/video_0001.mp4
+samples/video_0002.mp4
+samples/video_0003.mp4
