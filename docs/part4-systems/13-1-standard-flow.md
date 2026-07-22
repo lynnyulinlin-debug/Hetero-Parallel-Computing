@@ -3,5 +3,4 @@
 **建立基线 → 识别热点 → 提出假设 → 优化 → 验证**
 
 - 没有基线就没有加速比；没有验证就不知道改对没有。
-- 这正是 `examples/common/bench.h` 与 `verify.h` 的设计动机。
-
+- `examples/common/bench.h` 与 `verify.h` 对应的就是这套流程。
