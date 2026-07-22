@@ -1,0 +1,4 @@
+# 每行一个校准样本路径，当前为占位示例
+samples/calib_0001.jpg
+samples/calib_0002.jpg
+samples/calib_0003.jpg
