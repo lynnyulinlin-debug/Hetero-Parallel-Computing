@@ -23,7 +23,7 @@
 
 ## 阅读方式
 
-章节职责概览：第1-3章打底，第4-7章讲主机侧工程，第8-11章讲 GPU/NPU，第12章做补充，第13-16章做收口。当前发布阶段按 `MVP -> Preview -> Alpha -> Full` 递进。
+章节分工：第1-3章打底，第4-7章讲主机侧工程，第8-11章讲 GPU/NPU，第12章做补充，第13-16章做收口。当前发布阶段按 `MVP -> Preview -> Alpha -> Full` 递进。
 
 分层标记贯穿全书：**⚡️入门必读** · **🔬进阶探索** · **📋产品经理视角**
 
@@ -37,24 +37,26 @@
 
 ## 内容入口
 
-| 章 | 角色 | 主要内容 | 正文 |
-|---|---|---|---|
-| 第1章 | 并行基础 | 为什么需要并行计算 | [正文](docs/part1-foundations/01-why-parallel.md) |
-| 第2章 | 桥接 | 线程、同步和可见性基础 | [正文](docs/part1-foundations/02-os-parallel-basics.md) |
-| 第3章 | 并行基础 | 常见并行模式与抽象 | [正文](docs/part1-foundations/03-parallel-patterns.md) |
-| 第4章 | CPU 主机侧工程 | pthread、线程池与任务组织 | [正文](docs/part2-host-cpu/04-cpu-multithreading.md) |
-| 第5章 | CPU 主机侧工程 | OpenMP 并行写法与调度 | [正文](docs/part2-host-cpu/05-openmp.md) |
-| 第6章 | CPU 主机侧工程 | SIMD、向量化和 intrinsic | [正文](docs/part2-host-cpu/06-simd.md) |
-| 第7章 | 主机侧收口 | CPU 在异构系统中的职责 | [正文](docs/part2-host-cpu/07-cpu-in-hetero.md) |
-| 第8章 | 协处理器导读 | GPU/NPU 视角和选型前导 | [正文](docs/part3-coprocessor/08-coprocessor-overview.md) |
-| 第9章 | GPU 主线 | CUDA 编程模型和内存层次 | [正文](docs/part3-coprocessor/09-gpu-cuda.md) |
-| 第10章 | GPU 工具链 | profiler、时间线和瓶颈定位 | [正文](docs/part3-coprocessor/10-gpu-profiling.md) |
-| 第11章 | NPU 接入模板 | 模型转换、量化和板端部署 | [正文](docs/part3-coprocessor/11-npu-tpu.md) |
-| 第12章 | 跨平台补充 | OpenCL/SYCL 等跨平台模型 | [正文](docs/part3-coprocessor/12-cross-platform.md) |
-| 第13章 | 方法论收口 | 性能分析标准流程 | [正文](docs/part4-systems/13-performance-methodology.md) |
-| 第14章 | 系统案例 | 端到端异构案例与实验 | [正文](docs/part4-systems/14-end-to-end-cases.md) |
-| 第15章 | 系统协同 | CPU/GPU/NPU 协同和 DAG | [正文](docs/part4-systems/15-system-coordination.md) |
-| 第16章 | 决策出口 | 技术选型、成本和产品决策 | [正文](docs/part4-systems/16-decision-guide.md) |
+> `完成状态` 表示这一章的正文完成度，不是发布阶段。
+
+| 章 | 角色 | 主要内容 | 完成状态 | 正文 |
+|---|---|---|---|---|
+| 第1章 | 并行基础 | 为什么需要并行计算 | 已完成 | [正文](docs/part1-foundations/01-why-parallel.md) |
+| 第2章 | 桥接 | 线程、同步和可见性基础 | 基本完成 | [正文](docs/part1-foundations/02-os-parallel-basics.md) |
+| 第3章 | 并行基础 | 常见并行模式与抽象 | 已完成 | [正文](docs/part1-foundations/03-parallel-patterns.md) |
+| 第4章 | CPU 主机侧工程 | pthread、线程池与任务组织 | 基本完成 | [正文](docs/part2-host-cpu/04-cpu-multithreading.md) |
+| 第5章 | CPU 主机侧工程 | OpenMP 并行写法与调度 | 已完成 | [正文](docs/part2-host-cpu/05-openmp.md) |
+| 第6章 | CPU 主机侧工程 | SIMD、向量化和 intrinsic | 已完成 | [正文](docs/part2-host-cpu/06-simd.md) |
+| 第7章 | 主机侧收口 | CPU 在异构系统中的职责 | 基本完成 | [正文](docs/part2-host-cpu/07-cpu-in-hetero.md) |
+| 第8章 | 协处理器导读 | GPU/NPU 视角和选型前导 | 已完成 | [正文](docs/part3-coprocessor/08-coprocessor-overview.md) |
+| 第9章 | GPU 主线 | CUDA 编程模型和内存层次 | 已完成 | [正文](docs/part3-coprocessor/09-gpu-cuda.md) |
+| 第10章 | GPU 工具链 | profiler、时间线和瓶颈定位 | 已完成 | [正文](docs/part3-coprocessor/10-gpu-profiling.md) |
+| 第11章 | NPU 接入模板 | 模型转换、量化和板端部署 | 已完成 | [正文](docs/part3-coprocessor/11-npu-tpu.md) |
+| 第12章 | 跨平台补充 | OpenCL/SYCL 等跨平台模型 | 基本完成 | [正文](docs/part3-coprocessor/12-cross-platform.md) |
+| 第13章 | 方法论收口 | 性能分析标准流程 | 已完成 | [正文](docs/part4-systems/13-performance-methodology.md) |
+| 第14章 | 系统案例 | 端到端异构案例与实验 | 已完成 | [正文](docs/part4-systems/14-end-to-end-cases.md) |
+| 第15章 | 系统协同 | CPU/GPU/NPU 协同和 DAG | 已完成 | [正文](docs/part4-systems/15-system-coordination.md) |
+| 第16章 | 决策出口 | 技术选型、成本和产品决策 | 已完成 | [正文](docs/part4-systems/16-decision-guide.md) |
 
 - [前言](docs/00-preface.md)
 - **第一篇 预备篇** — 并行计算基础 · [目录](docs/part1-foundations/)
