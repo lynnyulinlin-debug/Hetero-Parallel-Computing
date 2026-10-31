@@ -1,0 +1,6 @@
+{
+  "status": "ok",
+  "artifact": "artifacts/model.onnx",
+  "checkpoint_exists": false,
+  "task": "classification"
+}

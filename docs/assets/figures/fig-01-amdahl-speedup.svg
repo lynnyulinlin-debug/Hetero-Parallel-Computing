@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Amdahl 定律中的串行部分与加速比上限</title>
+  <desc id="desc">概念曲线比较不同串行占比下随着处理器数量增加的理论加速比，串行占比越高，上限越低。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 17px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.axis{stroke:#475569;stroke-width:3}.grid{stroke:#d6d3c7;stroke-width:1.5;stroke-dasharray:6 7}.p1{stroke:#0f766e;stroke-width:5;fill:none}.p2{stroke:#2563eb;stroke-width:5;fill:none}.p3{stroke:#e85d04;stroke-width:5;fill:none}.note{fill:#fff;stroke:#d6d3c7;stroke-width:2}
+  </style>
+  <rect class="bg" width="1200" height="620" rx="24"/>
+  <text class="t" x="55" y="60">Amdahl 定律：串行部分决定可获得的加速比上限</text>
+  <text class="s" x="55" y="88">曲线为教学性示意。真实结果还会受同步、搬运、负载不均和内存带宽限制。</text>
+  <line class="axis" x1="145" y1="495" x2="1080" y2="495"/><line class="axis" x1="145" y1="495" x2="145" y2="145"/>
+  <line class="grid" x1="145" y1="410" x2="1080" y2="410"/><line class="grid" x1="145" y1="325" x2="1080" y2="325"/><line class="grid" x1="145" y1="240" x2="1080" y2="240"/>
+  <text class="s" x="930" y="535">处理器 / 线程数量</text><text class="s" x="55" y="155">理论加速比</text><text class="s" x="115" y="500">1x</text><text class="s" x="105" y="415">5x</text><text class="s" x="98" y="330">10x</text><text class="s" x="98" y="245">20x</text>
+  <path class="p1" d="M145 495 C265 425 380 325 510 260 S795 165 1070 152"/>
+  <path class="p2" d="M145 495 C250 448 345 395 455 360 S710 325 1070 318"/>
+  <path class="p3" d="M145 495 C235 470 310 455 395 446 S695 430 1070 427"/>
+  <rect class="note" x="760" y="125" width="260" height="104" rx="12"/><text class="l" x="785" y="158">串行占比 1%</text><text class="s" x="785" y="183">上限约 100x</text><text class="s" x="785" y="207">但需要足够的并行工作</text>
+  <text class="l" x="725" y="306" fill="#2563eb">串行占比 10%：上限约 10x</text>
+  <text class="l" x="610" y="466" fill="#e85d04">串行占比 25%：上限约 4x</text>
+  <rect class="note" x="145" y="555" width="900" height="38" rx="10"/><text class="s" x="170" y="580">工程动作：先缩短串行准备、同步和搬运，再增加并行资源；否则线程更多只会更早撞到上限。</text>
+</svg>

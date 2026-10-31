@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">实时视频人脸检测的三级流水线</title>
+  <desc id="desc">视频帧依次经过 CPU 采集解码、GPU 或 NPU 推理和 CPU 后处理，两个有界队列隔离阶段并暴露背压。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 20px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.cpu{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.dev{fill:#fff0df;stroke:#e85d04;stroke-width:2}.queue{fill:#fff;stroke:#64748b;stroke-width:2;stroke-dasharray:7 5}.out{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#arrow)}.warn{fill:#fee2e2;stroke:#dc2626;stroke-width:2}
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="620" rx="24"/>
+  <text class="t" x="55" y="60">实时视频流：阶段隔离、队列背压与端到端指标</text>
+  <text class="s" x="55" y="88">同一时刻，不同帧可以分别处在采集、推理和后处理阶段。</text>
+  <rect class="cpu" x="70" y="220" width="220" height="150" rx="16"/><text class="l" x="120" y="260">CPU</text><text class="l" x="105" y="292">采集 + 解码</text><text class="s" x="98" y="322">camera / video / stream</text><text class="s" x="98" y="346">帧时间戳、输入校验</text>
+  <rect class="queue" x="350" y="245" width="125" height="100" rx="14"/><text class="l" x="380" y="280">队列 A</text><text class="s" x="370" y="310">capture_q</text>
+  <rect class="dev" x="535" y="220" width="220" height="150" rx="16"/><text class="l" x="592" y="260">GPU / NPU</text><text class="l" x="585" y="292">模型推理</text><text class="s" x="568" y="322">batch、runtime、工作区</text><text class="s" x="568" y="346">记录 inference latency</text>
+  <rect class="queue" x="815" y="245" width="125" height="100" rx="14"/><text class="l" x="845" y="280">队列 B</text><text class="s" x="837" y="310">infer_q</text>
+  <rect class="cpu" x="995" y="220" width="145" height="150" rx="16"/><text class="l" x="1032" y="260">CPU</text><text class="l" x="1020" y="292">后处理</text><text class="s" x="1013" y="322">NMS、绘框、输出</text>
+  <path class="arrow" d="M290 295H345"/><path class="arrow" d="M475 295H530"/><path class="arrow" d="M755 295H810"/><path class="arrow" d="M940 295H990"/>
+  <rect class="warn" x="350" y="420" width="590" height="72" rx="12"/><text class="l" x="380" y="450">队列增长是背压信号，不是吞吐提升</text><text class="s" x="380" y="476">当推理或后处理变慢，队列先积压；有界队列迫使系统选择等待、丢帧或降低输入速率。</text>
+  <rect class="out" x="70" y="530" width="1070" height="42" rx="10"/><text class="s" x="100" y="557">统一观察：端到端 FPS、P50/P95 延迟、capture_q_max、infer_q_max、各阶段耗时，以及输入与运行时版本。</text>
+</svg>

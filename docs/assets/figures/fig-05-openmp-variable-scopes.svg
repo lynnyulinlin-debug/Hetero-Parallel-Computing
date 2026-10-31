@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="350" viewBox="0 0 960 350" role="img" aria-labelledby="title desc">
+ <title id="title">OpenMP variable scopes</title><desc id="desc">Shared data is seen by every thread; private data belongs to individual threads; reduction values merge at the end.</desc>
+ <style>text{font-family:Arial,sans-serif;fill:#18324a}.title{font-size:25px;font-weight:700}.label{font-size:18px;font-weight:700}.note{font-size:14px;fill:#527084}.shared{fill:#e5f1f9;stroke:#2979a9;stroke-width:2}.private{fill:#fff0dc;stroke:#dc861f;stroke-width:2}.red{fill:#eef4e4;stroke:#619243;stroke-width:2}.line{fill:none;stroke:#6d8291;stroke-width:2}.arrow{fill:#6d8291}</style>
+ <rect width="960" height="350" fill="#f8f7f2"/><text x="42" y="49" class="title">OpenMP variable ownership: shared, private, reduction</text>
+ <rect x="80" y="92" width="225" height="76" rx="10" class="shared"/><text x="151" y="124" class="label">shared input[]</text><text x="132" y="148" class="note">one object, read by all</text>
+ <rect x="84" y="241" width="218" height="64" rx="10" class="red"/><text x="131" y="270" class="label">final sum</text><text x="111" y="291" class="note">merge after loop</text>
+ <g><rect x="432" y="75" width="170" height="82" rx="10" class="private"/><text x="471" y="108" class="label">Thread 0</text><text x="462" y="132" class="note">private i, local0</text><rect x="432" y="187" width="170" height="82" rx="10" class="private"/><text x="471" y="220" class="label">Thread 1</text><text x="462" y="244" class="note">private i, local1</text></g>
+ <rect x="720" y="132" width="165" height="82" rx="10" class="red"/><text x="753" y="165" class="label">reduction(+)</text><text x="757" y="190" class="note">local values merge</text>
+ <path d="M305 130h107" class="line"/><path d="M412 130l-10-6v12z" class="arrow"/><path d="M305 145l107 77" class="line"/><path d="M602 116h98" class="line"/><path d="M700 116l-10-6v12z" class="arrow"/><path d="M602 228h98" class="line"/><path d="M700 228l-10-6v12z" class="arrow"/><path d="M802 214v19H302" class="line"/><path d="M302 233l11-6v12z" class="arrow"/>
+ <text x="80" y="329" class="note">Keep mutable intermediate values private; use a reduction clause instead of concurrent writes to a shared accumulator.</text>
+</svg>

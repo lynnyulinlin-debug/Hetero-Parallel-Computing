@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">有界任务队列的生产者消费者生命周期</title>
+  <desc id="desc">生产者和消费者在锁内更新有界队列状态，在锁外执行计算，通过条件变量协调空和满状态，关闭时唤醒等待线程并汇合。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 19px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.prod{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.queue{fill:#fff0df;stroke:#e85d04;stroke-width:2}.cons{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.lock{fill:#fef3c7;stroke:#ca8a04;stroke-width:2}.wait{fill:#f3e8ff;stroke:#7c3aed;stroke-width:2}.close{fill:#fee2e2;stroke:#dc2626;stroke-width:2}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#7c3aed;stroke-width:2;stroke-dasharray:7 6;fill:none}
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="620" rx="24"/>
+  <text class="t" x="55" y="60">有界任务队列：锁内维护状态，锁外执行计算</text>
+  <text class="s" x="55" y="88">正常路径先定义所有权和等待条件；死锁、活锁和发布顺序在后续小节分别讨论。</text>
+  <rect class="prod" x="65" y="190" width="220" height="160" rx="16"/><text class="l" x="120" y="230">生产者</text><text class="s" x="95" y="264">1. lock 队列</text><text class="s" x="95" y="289">2. 满则 wait(not_full)</text><text class="s" x="95" y="314">3. 写任务、更新计数</text><text class="s" x="95" y="339">4. unlock 后 notify</text>
+  <rect class="queue" x="455" y="190" width="290" height="160" rx="16"/><text class="l" x="545" y="230">有界任务队列</text><text class="s" x="500" y="264">锁内状态：head、tail、count、closed</text><text class="s" x="500" y="289">等待条件：empty / full</text><rect class="lock" x="530" y="305" width="140" height="30" rx="8"/><text class="s" x="550" y="327">同一把锁保护</text>
+  <rect class="cons" x="915" y="190" width="220" height="160" rx="16"/><text class="l" x="970" y="230">消费者</text><text class="s" x="945" y="264">1. lock 队列</text><text class="s" x="945" y="289">2. 空则 wait(not_empty)</text><text class="s" x="945" y="314">3. 取任务、更新计数</text><text class="s" x="945" y="339">4. unlock 后计算</text>
+  <path class="arrow" d="M285 270H450"/><path class="arrow" d="M745 270H910"/>
+  <rect class="wait" x="365" y="410" width="470" height="70" rx="12"/><text class="l" x="395" y="440">条件变量：状态不满足时等待，状态更新后重新检查</text><text class="s" x="395" y="465">wait 必须在条件循环中调用；notify 不替代状态检查。</text>
+  <path class="dash" d="M175 350V410H365"/><path class="dash" d="M1025 350V410H835"/>
+  <rect class="close" x="235" y="520" width="730" height="48" rx="10"/><text class="s" x="265" y="550">关闭：设置 closed -> notify_all -> 工作线程处理已领取任务并退出 -> 主线程 join 汇合。</text>
+</svg>

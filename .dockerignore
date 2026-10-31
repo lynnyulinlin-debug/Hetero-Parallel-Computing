@@ -1,0 +1,10 @@
+.git/
+.github/
+build/
+cmake-build-*/
+__pycache__/
+*.pyc
+examples/ch11_npu_deploy/artifacts/*
+!examples/ch11_npu_deploy/artifacts/README.md
+examples/ch14_face_detection/artifacts/
+examples/ch14_face_detection/samples/

@@ -13,14 +13,13 @@ void vec_add_serial(const float *a, const float *b, float *c, int n);
 // OpenMP 实现。
 void vec_add_openmp(const float *a, const float *b, float *c, int n);
 
-#ifdef __cplusplus
-}
+// CUDA 实现（含 H2D/D2H 传输，单位墙钟可与 CPU 实现直接比较）。
+#ifdef USE_CUDA
+void vec_add_cuda(const float *a, const float *b, float *c, int n);
 #endif
 
 #ifdef __cplusplus
-// CUDA 实现（含 H2D/D2H 传输，单位墙钟可与 CPU 实现直接比较）。
-// 仅在用 nvcc 编译时可见。
-void vec_add_cuda(const float *a, const float *b, float *c, int n);
+}
 #endif
 
 #endif  // CH09_VEC_ADD_H

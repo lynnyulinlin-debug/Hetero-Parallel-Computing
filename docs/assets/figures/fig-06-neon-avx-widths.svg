@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 570" role="img" aria-labelledby="title desc">
+  <title id="title">NEON 与 AVX 的向量寄存器宽度和 lane 数</title>
+  <desc id="desc">概念图比较在 float32 元素下，128 位 NEON 和 SSE 容纳四个 lane，256 位 AVX 容纳八个 lane，512 位 AVX-512 容纳十六个 lane。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.panel{fill:#fff;stroke:#d6d3c7;stroke-width:2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 19px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.lane{fill:#e0ecff;stroke:#2563eb;stroke-width:1.5}.wide{fill:#dcf5ed;stroke:#0f766e;stroke-width:1.5}.note{fill:#fff0df;stroke:#e85d04;stroke-width:2}
+  </style>
+  <rect class="bg" width="1200" height="570" rx="24"/>
+  <text class="t" x="55" y="60">向量寄存器宽度：一次容纳更多 lane，不等于自动更快</text>
+  <text class="s" x="55" y="88">以下以 float32 为例。实际可用宽度、频率和指令支持取决于具体 CPU 与编译选项。</text>
+  <rect class="panel" x="55" y="130" width="1090" height="270" rx="18"/>
+  <text class="l" x="85" y="175">128-bit：ARM NEON 或 x86 SSE，4 个 float32 lane</text>
+  <g transform="translate(85 198)">
+    <rect class="lane" width="90" height="58" rx="7"/><rect class="lane" x="92" width="90" height="58" rx="7"/><rect class="lane" x="184" width="90" height="58" rx="7"/><rect class="lane" x="276" width="90" height="58" rx="7"/>
+    <text class="s" x="27" y="35">lane 0</text><text class="s" x="119" y="35">lane 1</text><text class="s" x="211" y="35">lane 2</text><text class="s" x="303" y="35">lane 3</text>
+  </g>
+  <text class="l" x="500" y="175">256-bit：x86 AVX，8 个 float32 lane</text>
+  <g transform="translate(500 198)">
+    <rect class="wide" width="45" height="58" rx="6"/><rect class="wide" x="47" width="45" height="58" rx="6"/><rect class="wide" x="94" width="45" height="58" rx="6"/><rect class="wide" x="141" width="45" height="58" rx="6"/><rect class="wide" x="188" width="45" height="58" rx="6"/><rect class="wide" x="235" width="45" height="58" rx="6"/><rect class="wide" x="282" width="45" height="58" rx="6"/><rect class="wide" x="329" width="45" height="58" rx="6"/>
+    <text class="s" x="85" y="88">8 个并列 lane</text>
+  </g>
+  <text class="l" x="85" y="315">512-bit：x86 AVX-512，16 个 float32 lane</text>
+  <g transform="translate(85 338)">
+    <rect class="wide" width="42" height="38" rx="5"/><rect class="wide" x="44" width="42" height="38" rx="5"/><rect class="wide" x="88" width="42" height="38" rx="5"/><rect class="wide" x="132" width="42" height="38" rx="5"/><rect class="wide" x="176" width="42" height="38" rx="5"/><rect class="wide" x="220" width="42" height="38" rx="5"/><rect class="wide" x="264" width="42" height="38" rx="5"/><rect class="wide" x="308" width="42" height="38" rx="5"/><rect class="wide" x="352" width="42" height="38" rx="5"/><rect class="wide" x="396" width="42" height="38" rx="5"/><rect class="wide" x="440" width="42" height="38" rx="5"/><rect class="wide" x="484" width="42" height="38" rx="5"/><rect class="wide" x="528" width="42" height="38" rx="5"/><rect class="wide" x="572" width="42" height="38" rx="5"/><rect class="wide" x="616" width="42" height="38" rx="5"/><rect class="wide" x="660" width="42" height="38" rx="5"/>
+  </g>
+  <rect class="note" x="55" y="445" width="1090" height="75" rx="14"/><text class="l" x="85" y="476">判断顺序：先确认连续访问、迭代独立和编译器向量化，再讨论寄存器更宽能否带来收益。</text><text class="s" x="85" y="503">宽度只改变单条向量指令的潜在 lane 数；缓存、对齐、尾部处理、降频和数据依赖仍可能成为限制。</text>
+</svg>

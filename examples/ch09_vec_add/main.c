@@ -10,6 +10,7 @@
 
 // CUDA 实现用 C++ 链接，这里手动声明以便在 C 驱动里调用（若编译了 CUDA）。
 #ifdef USE_CUDA
+#include <cuda_runtime.h>
 extern void vec_add_cuda(const float *a, const float *b, float *c, int n);
 #endif
 
@@ -27,12 +28,21 @@ static void run_impl(void *p) {
 
 int main(int argc, char **argv) {
     int n = (argc > 1) ? atoi(argv[1]) : (1 << 24);  // 默认 ~1600 万元素
+    if (n <= 0) {
+        fprintf(stderr, "n must be positive\n");
+        return EXIT_FAILURE;
+    }
     printf("vec_add: n=%d (%.1f MB/array)\n", n, n * sizeof(float) / 1e6);
 
     float *a   = (float *)malloc(sizeof(float) * n);
     float *b   = (float *)malloc(sizeof(float) * n);
     float *c   = (float *)malloc(sizeof(float) * n);
     float *ref = (float *)malloc(sizeof(float) * n);
+    if (!a || !b || !c || !ref) {
+        fprintf(stderr, "allocation failed\n");
+        free(a); free(b); free(c); free(ref);
+        return EXIT_FAILURE;
+    }
     for (int i = 0; i < n; ++i) { a[i] = (float)(i % 100); b[i] = (float)(i % 7); }
 
     // 1) 黄金参考
@@ -47,16 +57,28 @@ int main(int argc, char **argv) {
     vec_ctx_t co = {a, b, c, n, vec_add_openmp};
     bench_result_t r_omp = bench_run("vec_add_openmp", 2, 11, run_impl, &co);
     bench_report(&r_omp);
-    verify_array_f32(c, ref, n, 0.f, 0.f);  // 整数和，应精确相等
+    if (verify_array_f32(c, ref, n, 0.f, 0.f) != 0) {  // 整数和，应精确相等
+        free(a); free(b); free(c); free(ref);
+        return EXIT_FAILURE;
+    }
     bench_speedup(&r_serial, &r_omp);
 
 #ifdef USE_CUDA
     // 4) CUDA（含传输开销，反映真实端到端代价）
-    vec_ctx_t cu = {a, b, c, n, vec_add_cuda};
-    bench_result_t r_cuda = bench_run("vec_add_cuda", 2, 11, run_impl, &cu);
-    bench_report(&r_cuda);
-    verify_array_f32(c, ref, n, 0.f, 0.f);
-    bench_speedup(&r_serial, &r_cuda);
+    int device_count = 0;
+    cudaError_t dev_err = cudaGetDeviceCount(&device_count);
+    if (dev_err != cudaSuccess || device_count <= 0) {
+        printf("[info] CUDA executable but no available device; skipping CUDA vec_add test\n");
+    } else {
+        vec_ctx_t cu = {a, b, c, n, vec_add_cuda};
+        bench_result_t r_cuda = bench_run("vec_add_cuda", 2, 11, run_impl, &cu);
+        bench_report(&r_cuda);
+        if (verify_array_f32(c, ref, n, 0.f, 0.f) != 0) {
+            free(a); free(b); free(c); free(ref);
+            return EXIT_FAILURE;
+        }
+        bench_speedup(&r_serial, &r_cuda);
+    }
 #else
     printf("[info] CUDA 未编译（用 `make USE_CUDA=1` 启用）\n");
 #endif

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Unfused 与 fused softmax 的中间张量路径对照</title>
+  <desc id="desc">左侧 unfused 路径把每一步结果写回全局内存，右侧 fused 路径在同一行计算中保留局部状态并只写一次输出。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.panel{fill:#fff;stroke:#d6d3c7;stroke-width:2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 19px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.box{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.temp{fill:#fff0df;stroke:#e85d04;stroke-width:2}.out{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#e85d04;stroke-width:2.5;stroke-dasharray:7 6;fill:none}
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="620" rx="24"/>
+  <text class="t" x="55" y="60">Softmax 融合：减少中间张量的写回与再读取</text>
+  <text class="s" x="55" y="88">融合不保证任何输入都更快；它首先改变的是数据移动与 launch 边界。</text>
+  <rect class="panel" x="55" y="130" width="510" height="390" rx="18"/><text class="l" x="85" y="170">unfused：每一步 materialize</text>
+  <rect class="box" x="95" y="210" width="110" height="65" rx="10"/><text class="l" x="123" y="249">输入 x</text>
+  <rect class="temp" x="250" y="210" width="150" height="65" rx="10"/><text class="l" x="278" y="240">x - max(x)</text><text class="s" x="284" y="260">写回临时张量</text>
+  <rect class="temp" x="250" y="325" width="150" height="65" rx="10"/><text class="l" x="295" y="355">exp(...)</text><text class="s" x="284" y="375">再次写回 / 读取</text>
+  <rect class="out" x="435" y="267" width="90" height="65" rx="10"/><text class="l" x="450" y="306">输出 y</text>
+  <path class="arrow" d="M205 242H245"/><path class="arrow" d="M325 275V320"/><path class="arrow" d="M400 357H430"/>
+  <text class="s" x="95" y="450">代价：中间张量占用工作区，并增加全局内存往返。</text>
+  <rect class="panel" x="635" y="130" width="510" height="390" rx="18"/><text class="l" x="665" y="170">fused：一行内保留局部状态</text>
+  <rect class="box" x="680" y="260" width="110" height="65" rx="10"/><text class="l" x="708" y="299">输入 x</text>
+  <rect class="temp" x="840" y="210" width="185" height="165" rx="12"/><text class="l" x="880" y="247">同一计算范围</text><text class="s" x="868" y="280">max -> exp -> sum</text><text class="s" x="868" y="305">局部寄存器 / 共享状态</text><text class="s" x="868" y="330">不生成全局临时张量</text>
+  <rect class="out" x="1040" y="260" width="70" height="65" rx="10"/><text class="l" x="1050" y="299">输出 y</text>
+  <path class="arrow" d="M790 292H835"/><path class="arrow" d="M1025 292H1035"/>
+  <path class="dash" d="M700 415H1085"/><text class="s" x="720" y="450">验证顺序：数值一致 -> 记录计时口径 -> 判断是否减少端到端搬运。</text>
+  <text class="s" x="55" y="575">工程边界：若计算受其他阶段、缓存、并行度或同步限制，消除中间张量未必改变总耗时。</text>
+</svg>

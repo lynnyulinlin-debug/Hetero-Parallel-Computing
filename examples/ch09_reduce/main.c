@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
     int device_count = 0;
     cudaError_t dev_err = cudaGetDeviceCount(&device_count);
     if (dev_err != cudaSuccess || device_count <= 0) {
-        printf("[info] CUDA 可执行但当前环境没有可用设备，跳过 CUDA 归约测试\n");
+        printf("[info] CUDA executable but no available device; skipping CUDA reduce test\n");
     } else {
         reduce_ctx_t cn = {a, &out, n, reduce_cuda_naive};
         bench_result_t r_cuda_naive = bench_run("reduce_cuda_naive", 2, 11, run_impl, &cn);

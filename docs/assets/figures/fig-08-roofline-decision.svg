@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Roofline 模型中的算子定位与优化选择</title>
+  <desc id="desc">概念 Roofline 图标示低算术强度的向量加法更可能受带宽限制，高算术强度的矩阵乘更可能受计算峰值限制。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 17px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.axis{stroke:#475569;stroke-width:3}.grid{stroke:#d6d3c7;stroke-width:1.5;stroke-dasharray:6 7}.roof{stroke:#e85d04;stroke-width:6;fill:none}.blue{fill:#2563eb}.purple{fill:#7c3aed}.green{fill:#0f766e}.note{fill:#fff;stroke:#d6d3c7;stroke-width:2}
+  </style>
+  <rect class="bg" width="1200" height="620" rx="24"/>
+  <text class="t" x="55" y="60">先定位瓶颈，再决定是否值得把工作交给 Device</text>
+  <text class="s" x="55" y="88">位置是教学示意；真实坐标必须来自目标设备带宽、峰值算力和实测算术强度。</text>
+  <line class="axis" x1="150" y1="480" x2="1070" y2="480"/><line class="axis" x1="150" y1="480" x2="150" y2="150"/>
+  <line class="grid" x1="150" y1="390" x2="1070" y2="390"/><line class="grid" x1="150" y1="300" x2="1070" y2="300"/><line class="grid" x1="150" y1="210" x2="1070" y2="210"/>
+  <path class="roof" d="M155 466 L625 210 L1060 210"/>
+  <text class="l" x="286" y="335">带宽上限</text><text class="l" x="805" y="195">计算上限</text>
+  <circle class="blue" cx="320" cy="375" r="11"/><text class="l" x="342" y="374">vec_add</text><text class="s" x="342" y="396">低算术强度</text>
+  <circle class="purple" cx="505" cy="294" r="11"/><text class="l" x="527" y="294">reduce</text><text class="s" x="527" y="316">带宽 + 同步</text>
+  <circle class="green" cx="825" cy="238" r="11"/><text class="l" x="847" y="238">GEMM</text><text class="s" x="847" y="260">高算术强度</text>
+  <rect class="note" x="185" y="515" width="300" height="66" rx="12"/><text class="l" x="210" y="542">低强度：先减少搬运</text><text class="s" x="210" y="564">批量化、驻留、合并访问</text>
+  <rect class="note" x="510" y="515" width="300" height="66" rx="12"/><text class="l" x="535" y="542">同步压力：先降争用</text><text class="s" x="535" y="564">分层归约、局部累积</text>
+  <rect class="note" x="835" y="515" width="280" height="66" rx="12"/><text class="l" x="860" y="542">高强度：提高复用</text><text class="s" x="860" y="564">tile、数据布局、占用率</text>
+</svg>

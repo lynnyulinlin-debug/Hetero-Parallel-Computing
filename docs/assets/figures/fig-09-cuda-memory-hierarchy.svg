@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">CUDA 内存层次与作用域</title>
+  <desc id="desc">寄存器为线程私有，共享内存供 block 内线程协作，全局内存供所有线程访问；局部内存通常来自寄存器溢出。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.title{font:700 28px sans-serif;fill:#172033}.label{font:700 19px sans-serif;fill:#172033}.text{font:500 16px sans-serif;fill:#334155}.small{font:500 14px sans-serif;fill:#475569}.fast{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.shared{fill:#fff0df;stroke:#e85d04;stroke-width:2}.global{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.local{fill:#f1f5f9;stroke:#64748b;stroke-width:2}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#a)}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="650" rx="24"/>
+  <text class="title" x="55" y="60">CUDA 内存层次：数据放在哪里</text>
+  <text class="small" x="55" y="88">越靠近线程通常越快、容量越小、作用域越窄；优化的关键是把会复用的数据放在正确层级。</text>
+  <rect class="global" x="70" y="470" width="730" height="110" rx="16"/>
+  <text class="label" x="100" y="510">Global memory</text><text class="text" x="100" y="540">所有线程可访问，容量大，延迟高；尽量合并访问并减少重复读取。</text>
+  <rect class="shared" x="170" y="300" width="530" height="120" rx="16"/>
+  <text class="label" x="200" y="343">Shared memory</text><text class="text" x="200" y="374">一个 block 共享，适合 tile、归约和块内数据复用。</text>
+  <rect class="fast" x="270" y="145" width="150" height="105" rx="14"/>
+  <text class="label" x="295" y="185">Register</text><text class="small" x="295" y="213">线程私有</text><text class="small" x="295" y="234">最快</text>
+  <rect class="fast" x="470" y="145" width="150" height="105" rx="14"/>
+  <text class="label" x="495" y="185">Register</text><text class="small" x="495" y="213">线程私有</text><text class="small" x="495" y="234">最快</text>
+  <rect class="local" x="875" y="295" width="245" height="125" rx="16"/>
+  <text class="label" x="900" y="335">Local memory</text><text class="text" x="900" y="365">线程私有的逻辑空间</text><text class="small" x="900" y="392">寄存器溢出时常落到全局内存</text>
+  <path class="arrow" d="M345 250 V285"/><path class="arrow" d="M545 250 V285"/><path class="arrow" d="M435 420 V455"/>
+  <path class="arrow" d="M800 355 H860"/><path class="arrow" d="M995 420 C970 465 910 495 815 515"/>
+  <text class="small" x="730" y="180">作用域：thread</text><text class="small" x="730" y="325">作用域：block</text><text class="small" x="730" y="495">作用域：grid / device</text>
+  <text class="small" x="55" y="620">典型优化顺序：先减少 global memory 往返，再用 shared memory 提高 block 内复用，最后检查寄存器压力。</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="320" viewBox="0 0 960 320" role="img" aria-labelledby="title desc">
+  <title id="title">pthread lifecycle</title><desc id="desc">Main thread creates worker threads, workers execute, and the main thread joins them.</desc>
+  <style>text{font-family:Arial,sans-serif;fill:#18324a}.title{font-size:25px;font-weight:700}.label{font-size:17px;font-weight:700}.note{font-size:14px;fill:#527084}.main{fill:#e5f1f9;stroke:#2979a9;stroke-width:2}.worker{fill:#fff0dc;stroke:#dc861f;stroke-width:2}.line{fill:none;stroke:#6d8291;stroke-width:3;stroke-dasharray:7 6}.arrow{fill:#6d8291}</style>
+  <rect width="960" height="320" fill="#f8f7f2"/><text x="42" y="49" class="title">pthread: create, execute, join</text>
+  <rect x="56" y="94" width="160" height="70" rx="10" class="main"/><text x="87" y="123" class="label">Main thread</text><text x="89" y="148" class="note">prepare work</text>
+  <rect x="374" y="77" width="176" height="63" rx="10" class="worker"/><text x="408" y="107" class="label">Worker 0</text><text x="410" y="129" class="note">execute range A</text>
+  <rect x="374" y="180" width="176" height="63" rx="10" class="worker"/><text x="408" y="210" class="label">Worker 1</text><text x="410" y="232" class="note">execute range B</text>
+  <rect x="716" y="120" width="174" height="70" rx="10" class="main"/><text x="752" y="149" class="label">Main thread</text><text x="755" y="173" class="note">join and collect</text>
+  <path d="M216 115H350" class="line"/><path d="M350 115l-12-7v14z" class="arrow"/><text x="254" y="100" class="note">pthread_create</text>
+  <path d="M216 143L350 205" class="line"/><path d="M350 205l-12-7v14z" class="arrow"/>
+  <path d="M550 109H694" class="line"/><path d="M694 109l-12-7v14z" class="arrow"/><path d="M550 211L694 175" class="line"/><path d="M694 175l-12-7v14z" class="arrow"/><text x="595" y="93" class="note">pthread_join</text>
+  <text x="57" y="286" class="note">The join point is the explicit synchronization boundary: resources are reclaimed only after workers finish.</text>
+</svg>

@@ -1,0 +1,13 @@
+backend=rknn
+task=classification
+model=artifacts/model.quant
+model_exists=True
+test_dir=data/test
+test_dir_exists=True
+test_list=data/test/list.txt
+test_list_exists=True
+num_test_samples=3
+topk=5
+latency_ms=10.8
+top1_acc=0.915
+top5_acc=0.9750000000000001

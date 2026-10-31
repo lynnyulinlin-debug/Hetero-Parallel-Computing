@@ -1,124 +1,42 @@
-# 环境部署说明
+# 环境选择与验证
 
-> 目的：给项目提供一份统一的环境部署与验证入口，避免 CPU / GPU / NPU / 容器信息分散在多个文档里。
+> 本页只负责选择环境与进入验证路径。安装命令、平台前置条件和排障分别放在 `docs/environment/`；最短学习路径见 [USAGE](USAGE.md)。
 
-## 适用范围
+## 先选目标
 
-- `docs/` 里的教程正文
-- `examples/` 里的可运行示例
-- `docker/` 里的容器化复现思路
+| 目标 | 最低环境 | 验证入口 | 详细说明 |
+|---|---|---|---|
+| 第一阶段本地基础（Task 0-3） | Linux、C 编译器、CMake、OpenMP | `ctest -L cpu` | [CPU / Host](environment/cpu.md) |
+| CUDA 算子 | NVIDIA GPU、驱动、CUDA Toolkit | `ctest -L cuda` | [NVIDIA CUDA](environment/nvidia-cuda.md) |
+| Jetson 边缘视觉 | Jetson Orin Nano、JetPack、TensorRT | `ch14_face_detection --mode real` | [Jetson Orin Nano](environment/jetson-orin.md) |
+| NPU 对照部署 | RK3588/RKNN、昇腾/CANN 等 | 第11章部署报告 | [NPU 平台](environment/npu.md) |
+| 可复现构建 | Docker；CUDA 路径另需 NVIDIA Container Toolkit | 容器内 CTest | [容器](environment/containers.md) |
 
-## 环境分层
+## 通用验证顺序
 
-### 1. 基础环境
+1. 先完成 CPU 构建与 `ctest -L cpu`。
+2. 有 NVIDIA GPU 时，再启用 CUDA target 与 `ctest -L cuda`。
+3. 有 Jetson 时，使用真实视频与 TensorRT 适配器导出设备报告。
+4. 最后按需要接入 RK3588 或其他 NPU，作为部署约束对照。
 
-适合验证 CPU 示例、OpenMP 示例和大部分文档内容。
+模拟项目必须输出 `execution_mode: simulated`；真实设备报告必须包含平台、运行时版本、模型、输入和测量口径。具体要求见 [代码与测试框架](ENGINEERING.md)。
 
-- Linux
-- GCC 9+
-- `make`
-- 可选：`cmake`
+## 没有硬件时能完成什么
 
-建议验证命令：
+没有 NVIDIA GPU、Jetson 或 NPU 开发板时，仍可完成第一阶段：Task 0-3 走 CPU 路径，Task 4-6 走模拟或设计路径。不能得出的结论是 GPU/NPU 的真实性能、功耗、驱动兼容性和厂商 SDK 行为。
 
-```bash
-cd examples/ch09_vec_add && make run
-cd examples/ch09_reduce && make run
-```
-
-通过标准：
-
-- 能看到串行与 OpenMP 的计时对比
-- 能看到 `PASS` 或等价的结果校验输出
-
-### 2. GPU 环境
-
-适合验证 CUDA 示例和性能分析流程。
-
-- NVIDIA GPU
-- CUDA Toolkit 11+
-- `nvcc`
-- 与 CUDA 版本匹配的 NVIDIA 驱动
-- 可选：Nsight Systems、Nsight Compute
-
-建议验证命令：
-
-```bash
-cd examples/ch09_vec_add && make USE_CUDA=1 run
-cd examples/ch09_reduce && make USE_CUDA=1 run
-```
-
-通过标准：
-
-- CUDA 目标可以编译
-- 机器有 GPU 时，CUDA 路径能正常运行
-- 没有 GPU 时，CPU 路径仍可正常完成并跳过 CUDA 测试
-
-### 3. NPU 环境
-
-适合验证第11章和端到端案例中的部署链路。
-
-NPU 环境依赖具体硬件与厂商 SDK，当前项目按“模板 + 接入边界”方式维护，不要求所有读者都能在本地跑通真实板端推理。
-
-可选目标平台：
-
-- RKNN / 瑞芯微平台
-- TFLite delegate 平台
-- Ascend / CANN 平台
-
-建议验证命令：
-
-```bash
-cd examples/ch11_npu_deploy && make run
-```
-
-通过标准：
-
-- 导出、量化、转换、推理四个阶段的脚手架能串起来
-- `artifacts/` 中能产出报告或中间工件
-- 没有真实板卡时，仍能理解完整部署链路
-
-### 4. 容器环境
-
-适合希望稳定复现、避免编译器和运行时漂移的场景。
-
-当前仓库里容器部分主要是说明框架，目标是后续提供：
-
-- `Dockerfile.cpu`
-- `Dockerfile.cuda`
-
-容器环境的价值是：
-
-- 固定编译器版本
-- 固定 CUDA 运行时
-- 降低依赖漂移
-
-## 推荐验证矩阵
-
-| 场景 | 推荐环境 | 验证入口 |
+| 可执行 | 命令或项目 | 结论边界 |
 |---|---|---|
-| CPU 教学与回归 | Linux + GCC + `make` | `examples/ch09_vec_add`、`examples/ch09_reduce` |
-| GPU 教学与回归 | NVIDIA GPU + CUDA Toolkit | `examples/ch09_vec_add`、`examples/ch09_reduce` |
-| NPU 接入模板 | 对应开发板 + 厂商 SDK | `examples/ch11_npu_deploy` |
-| 端到端流水线 | CPU/GPU/NPU 按后端切换 | `examples/ch14_face_detection/pipeline.py` |
-
-## 最小验证流程
-
-1. 先验证 CPU-only 路径。
-2. 再验证 GPU 路径是否可编译、可运行。
-3. 然后验证 NPU 部署模板是否能产出中间工件。
-4. 最后验证端到端流水线的后端切换和指标输出。
-
-## 维护原则
-
-- 新增示例先补最小可运行命令。
-- 硬件依赖强的示例必须保留模拟输入或占位脚手架。
-- 验证命令尽量稳定，不要频繁改入口参数。
-- 任何新环境要求都应先写进这里，再同步到对应示例 README。
+| CPU 正确性 | `ctest -L cpu` | 验证实现与参考结果一致，不代表 GPU 性能 |
+| CUDA 构建 | 有 Toolkit 时 `ctest -L cuda` | 无设备时测试跳过，不代表 kernel 已在 GPU 验证 |
+| 部署模拟 | `ctest -L python` | 验证报告 schema 与失败语义，不代表板端推理 |
+| 模拟流水线 | `ch14_face_detection --mode simulated` | 验证队列、阶段与指标结构，不代表端到端设备吞吐 |
 
 ## 相关文档
 
-- [使用说明](USAGE.md)
-- [交接说明](HANDOVER.md)
-- [附录A 实验环境搭建指南](appendix/A-environment-setup.md)
-- [容器环境](../docker/README.md)
+- [CPU / Host 环境](environment/cpu.md)
+- [NVIDIA CUDA 环境](environment/nvidia-cuda.md)
+- [Jetson Orin Nano 环境](environment/jetson-orin.md)
+- [NPU 平台环境](environment/npu.md)
+- [容器环境](environment/containers.md)
+- [环境排障](environment/troubleshooting.md)

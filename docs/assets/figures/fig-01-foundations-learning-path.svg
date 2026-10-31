@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">并行计算的系统基础学习路径</title>
+  <desc id="desc">第1章说明性能收益和上限，第2章说明共享状态的正确性，第3章说明任务与数据模式如何映射到后续硬件与系统选择。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.title{font:700 28px sans-serif;fill:#172033}.head{font:700 20px sans-serif;fill:#172033}.txt{font:500 15px sans-serif;fill:#475569}.card{stroke-width:2}.c1{fill:#e8eefc;stroke:#2563eb}.c2{fill:#fff0df;stroke:#e85d04}.c3{fill:#dcf5ed;stroke:#0f766e}.out{fill:#f3e8ff;stroke:#7c3aed}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#a)}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="560" rx="24"/>
+  <text class="title" x="55" y="62">第一篇：为后续异构并行建立三层共同语言</text>
+  <text class="txt" x="55" y="90">先判断是否值得并行，再保证共享执行正确，最后把负载描述为可映射的模式。</text>
+  <rect class="c1 card" x="55" y="155" width="320" height="220" rx="18"/>
+  <text class="head" x="85" y="198">第1章：性能约束</text>
+  <text class="txt" x="85" y="235">单核放缓、Amdahl/Gustafson</text>
+  <text class="txt" x="85" y="265">问题：值得并行吗？</text>
+  <text class="txt" x="85" y="295">证据：串行比例、粒度、数据路径</text>
+  <text class="txt" x="85" y="335">输出：并行化判断卡</text>
+  <rect class="c2 card" x="440" y="155" width="320" height="220" rx="18"/>
+  <text class="head" x="470" y="198">第2章：并发正确性</text>
+  <text class="txt" x="470" y="235">线程、队列、同步、可见性、退出</text>
+  <text class="txt" x="470" y="265">问题：共享状态何时安全？</text>
+  <text class="txt" x="470" y="295">证据：所有权、等待条件、发布顺序</text>
+  <text class="txt" x="470" y="335">输出：任务队列时序图</text>
+  <rect class="c3 card" x="825" y="155" width="320" height="220" rx="18"/>
+  <text class="head" x="855" y="198">第3章：负载模式</text>
+  <text class="txt" x="855" y="235">数据并行、任务并行、流水线</text>
+  <text class="txt" x="855" y="265">问题：怎样拆分和衡量目标？</text>
+  <text class="txt" x="855" y="295">证据：依赖、吞吐/延迟、映射约束</text>
+  <text class="txt" x="855" y="335">输出：模式选择记录卡</text>
+  <path class="arrow" d="M375 265H430"/><path class="arrow" d="M760 265H815"/>
+  <rect class="out card" x="250" y="440" width="700" height="65" rx="16"/>
+  <text class="head" x="280" y="480">进入第二篇：把任务、循环和数据放到 Host 控制面中实现与验证</text>
+  <path class="arrow" d="M600 375V430"/>
+</svg>

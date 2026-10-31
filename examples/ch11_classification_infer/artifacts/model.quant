@@ -1,0 +1,19 @@
+{
+  "format": "quantized",
+  "task": "classification",
+  "backend": "rknn",
+  "scheme": "ptq",
+  "bit_width": 8,
+  "source_onnx": "artifacts/model.onnx",
+  "source_onnx_exists": true,
+  "calibration_dir": "data/calib",
+  "calibration_dir_exists": true,
+  "calibration_list": "data/calib/list.txt",
+  "calibration_list_exists": true,
+  "num_calibration_samples": 3,
+  "samples_preview": [
+    "samples/calib_0001.jpg",
+    "samples/calib_0002.jpg",
+    "samples/calib_0003.jpg"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "backend": "rknn",
+  "task": "classification",
+  "model": "artifacts/model.quant",
+  "model_exists": true,
+  "test_dir": "data/test",
+  "test_dir_exists": true,
+  "test_list": "data/test/list.txt",
+  "test_list_exists": true,
+  "num_test_samples": 3,
+  "samples_preview": [
+    "samples/test_0001.jpg",
+    "samples/test_0002.jpg",
+    "samples/test_0003.jpg"
+  ],
+  "topk": 5,
+  "latency_ms": 10.8,
+  "top1_acc": 0.915,
+  "top5_acc": 0.9750000000000001,
+  "host_elapsed_ms": 0.045
+}

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">Host 与 Device 的数据路径</title>
+  <desc id="desc">CPU 主存与 GPU 或 NPU 设备内存独立，Host 提交工作、显式搬运数据并在事件处同步。</desc>
+  <style>
+    .bg { fill:#f8f7f2; } .panel { fill:#fff; stroke:#d6d3c7; stroke-width:2; } .cpu { fill:#e0ecff; stroke:#2563eb; stroke-width:2; }
+    .dev { fill:#fff0df; stroke:#e85d04; stroke-width:2; } .npu { fill:#dcf5ed; stroke:#0f766e; stroke-width:2; }
+    .title { font:700 28px sans-serif; fill:#172033; } .label { font:700 19px sans-serif; fill:#172033; } .text { font:500 16px sans-serif; fill:#334155; } .small { font:500 14px sans-serif; fill:#475569; }
+    .arrow { stroke:#475569; stroke-width:3; fill:none; marker-end:url(#a); } .dash { stroke:#64748b; stroke-width:2; stroke-dasharray:8 7; fill:none; }
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="640" rx="24"/>
+  <text class="title" x="55" y="60">Host-Device：独立内存，显式数据路径</text>
+  <text class="small" x="55" y="88">核心问题不是设备谁更快，而是数据何时准备、传到哪里、何时可以安全取回。</text>
+  <rect class="panel" x="55" y="130" width="390" height="390" rx="18"/>
+  <text class="label" x="85" y="170">Host / CPU</text>
+  <rect class="cpu" x="95" y="205" width="310" height="105" rx="12"/>
+  <text class="label" x="120" y="244">主存</text><text class="text" x="120" y="274">输入、队列、输出缓冲区</text>
+  <rect class="cpu" x="95" y="350" width="310" height="125" rx="12"/>
+  <text class="label" x="120" y="389">控制面</text><text class="text" x="120" y="419">准备数据 -> 提交工作 -> 等待事件</text><text class="small" x="120" y="448">CPU 不必等待每一次提交立刻完成</text>
+  <rect class="panel" x="755" y="130" width="390" height="390" rx="18"/>
+  <text class="label" x="785" y="170">Device / GPU 或 NPU</text>
+  <rect class="dev" x="795" y="205" width="310" height="105" rx="12"/>
+  <text class="label" x="820" y="244">设备内存</text><text class="text" x="820" y="274">输入张量、工作区、输出张量</text>
+  <rect class="npu" x="795" y="350" width="310" height="125" rx="12"/>
+  <text class="label" x="820" y="389">执行单元</text><text class="text" x="820" y="419">GPU kernel 或 NPU runtime</text><text class="small" x="820" y="448">数据复用越多，搬运越值得</text>
+  <path class="arrow" d="M405 250 H780"/><text class="label" x="525" y="232">H2D</text><text class="small" x="490" y="274">批量传输 / 数据驻留</text>
+  <path class="arrow" d="M795 455 H420"/><text class="label" x="530" y="485">D2H</text><text class="small" x="480" y="512">只在结果需要回 Host 时传回</text>
+  <path class="dash" d="M405 405 C530 320 650 320 795 405"/><text class="small" x="512" y="350">异步提交与事件同步</text>
+  <text class="small" x="55" y="580">判断顺序：先减少往返，再批量化，再让传输与计算重叠。</text>
+</svg>

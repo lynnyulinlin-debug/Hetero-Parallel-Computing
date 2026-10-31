@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">AI 加速器模型部署生命周期</title>
+  <desc id="desc">模型从训练框架导出到 ONNX，经过校准和量化，转换为厂商工件后在设备运行时验证精度和延迟。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.title{font:700 28px sans-serif;fill:#172033}.label{font:700 18px sans-serif;fill:#172033}.text{font:500 15px sans-serif;fill:#334155}.small{font:500 14px sans-serif;fill:#475569}.box{fill:#fff;stroke:#d6d3c7;stroke-width:2}.model{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.quant{fill:#fff0df;stroke:#e85d04;stroke-width:2}.device{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.dash{fill:#fff;stroke:#7c3aed;stroke-width:2;stroke-dasharray:7 6}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#a)}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="650" rx="24"/>
+  <text class="title" x="55" y="60">AI 加速器部署：每一段都要能独立验证</text>
+  <text class="small" x="55" y="88">先冻结接口，再替换下游实现。每个箭头都对应一个可检查的输入、输出和失败边界。</text>
+  <rect class="model" x="55" y="175" width="180" height="120" rx="14"/><text class="label" x="82" y="215">训练框架</text><text class="text" x="82" y="245">PyTorch / TF</text><text class="small" x="82" y="270">输入、输出、预处理</text>
+  <rect class="model" x="295" y="175" width="180" height="120" rx="14"/><text class="label" x="335" y="215">ONNX</text><text class="text" x="320" y="245">稳定中间表示</text><text class="small" x="320" y="270">检查算子与动态维度</text>
+  <rect class="quant" x="535" y="175" width="180" height="120" rx="14"/><text class="label" x="570" y="215">量化</text><text class="text" x="560" y="245">PTQ / QAT</text><text class="small" x="560" y="270">校准集、精度损失</text>
+  <rect class="device" x="775" y="175" width="180" height="120" rx="14"/><text class="label" x="810" y="215">厂商工件</text><text class="text" x="805" y="245">RKNN / OM / ...</text><text class="small" x="805" y="270">检查转换与兼容性</text>
+  <rect class="device" x="1015" y="175" width="130" height="120" rx="14"/><text class="label" x="1038" y="215">Runtime</text><text class="small" x="1034" y="245">设备加载</text><text class="small" x="1034" y="270">真实推理</text>
+  <path class="arrow" d="M235 235 H280"/><path class="arrow" d="M475 235 H520"/><path class="arrow" d="M715 235 H760"/><path class="arrow" d="M955 235 H1000"/>
+  <rect class="box" x="140" y="405" width="900" height="145" rx="16"/>
+  <text class="label" x="175" y="445">设备验收：不要只看“能跑”</text>
+  <text class="text" x="175" y="480">模型能否加载</text><text class="text" x="390" y="480">输出是否与基线一致</text><text class="text" x="660" y="480">延迟 / 吞吐 / 功耗</text>
+  <text class="small" x="175" y="515">真实模式记录：平台、SDK、输入规模、版本、测量口径和失败条件。</text>
+  <rect class="dash" x="55" y="580" width="1090" height="42" rx="10"/><text class="small" x="80" y="606">教学模拟可以固定阶段接口和报告 schema，但必须标记 execution_mode=simulated，不能替代真实设备验收。</text>
+</svg>

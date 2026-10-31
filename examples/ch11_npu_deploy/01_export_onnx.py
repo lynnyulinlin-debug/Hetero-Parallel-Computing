@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""导出模型到 ONNX 的脚手架。
+"""导出阶段的教学脚本。
 
-当前版本不依赖 PyTorch，先把真实工程需要的导出参数、工件布局和报告格式固定下来。
-后续接入真实模型时，只需要替换 export_model() 内部实现。
+这一步只负责把模型名、输入输出形状、归一化参数和报告格式固定下来。
+重点不是生成真实 ONNX 文件，而是让“导出阶段到底要冻结什么”先变得可见。
 """
 
 from __future__ import annotations
@@ -29,6 +29,7 @@ def export_model(
     report.parent.mkdir(parents=True, exist_ok=True)
     checkpoint_exists = checkpoint.exists() if checkpoint else False
 
+    # 教学版导出产物：先记录接口约定，再记录工件位置，方便后续阶段直接接入。
     artifact = {
         "format": "onnx",
         "model": model_name,

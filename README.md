@@ -2,38 +2,51 @@
 
 **HeteroPar: A System-Level Practice to Heterogeneous Parallel Computing**
 
-> 算法工程师与软件开发者的异构计算指南
+> 面向工程实践的 CPU/GPU/NPU 异构计算教程：从 Host 控制面到云边部署
 
-一份"系统视角、偏软件、广而全"的异构并行计算实践教程。聚焦概念模型、编程模型、工具链与协同工作流，不深入硬件微架构。
+一份以 CPU、GPU、NPU 为主线的异构并行计算实践教程，重点讲清三者如何分工、协同，以及如何在云端和边缘端落地。
 
-一句话总结：这不是单一 CUDA 或 OpenCL 编程手册，而是一门讲解如何把 CPU、GPU、NPU 等异构能力组织成可交付系统的实践教程。
+一句话总结：CPU 负责组织任务和数据，GPU 负责通用高吞吐计算，NPU 负责固定模型的高能效推理；云端和边缘端决定它们如何组合。
 
 ## 适合谁
 
-- **算法工程师**：想把模型跑得更快、部署到加速器上。
-- **软件工程师**：需要理解异构系统的编程模型与协同方式。
-- **产品经理**：关注选型与决策（看 📋 标记的小节）。
+- 异构并行开发工程师
+- 算法 / AI 部署工程师
+- 系统 / 平台工程师
+- 技术负责人 / 产品经理
+
+不太适合：
+
+- 完全零基础、还没接触过 Linux / C++ / 并发概念的读者
+- 只想查某个 API 用法的人
+- 只关心单一平台、完全不需要系统视角的人
 
 ## 使用入口
 
 - [使用说明](docs/USAGE.md)
 - [环境部署说明](docs/ENVIRONMENT.md)
+- [教程架构](docs/ARCHITECTURE.md)
+- [代码与测试框架](docs/ENGINEERING.md)
+- [第一阶段学习任务](docs/TASKS.md)
+- [第二阶段专题路线](docs/phase2/README.md)
 
-> `README` 只负责总览和快速判断；更具体的运行方式看 `USAGE`，环境部署看 `ENVIRONMENT`。
+> `README` 只负责总览和快速判断；章节职责看 `ARCHITECTURE`，代码框架看 `ENGINEERING`，运行方式看 `USAGE`，环境部署看 `ENVIRONMENT`。
 
 ## 阅读方式
 
-章节分工：第1-3章打底，第4-7章讲主机侧工程，第8-11章讲 GPU/NPU，第12章做补充，第13-16章做收口。当前发布阶段按 `MVP -> Preview -> Alpha -> Full` 递进。
+章节分工：第1-3章建立基础模型；第4-7章讲 Host 控制面；第8-10章讲 GPU 与云端计算；第11章讲 AI 加速器部署；第12章为跨平台选读；第13-16章讲云边系统、协同和选型。
 
 分层标记贯穿全书：**⚡️入门必读** · **🔬进阶探索** · **📋产品经理视角**
 
 | 读者 | 建议路径 |
 |------|----------|
-| ⚡️ 最短上手路径 | 第3章 → 第8章 → 第9章 → 第10章 → `examples/ch09_vec_add` |
-| 算法工程师（AI部署） | 第8章 → 第9章 → 第11章 → 第13章 → 第14章 |
-| 📋 产品经理 | 第1章 → 第3章 → 第8章 → 第11章 → 第16章 |
+| 第一阶段学习者 | [Task 0-6](docs/TASKS.md)：先完成最小工程闭环，不逐章读完全书 |
+| 云端 GPU / AI 工程师 | 第一阶段后选 [云端 GPU 专题](docs/phase2/README.md)：第9、10、13-15章 |
+| 边缘 AI 部署工程师 | 第一阶段后走 Jetson 固定视频基线，再按需比较 RK3588 |
+| 系统 / 平台工程师 | 第一阶段后选系统工程专题：第13-16章 |
+| 📋 产品经理 | 第1章 → 第3章 → 第7章 → 第11章 → 第16章 |
 
-> v0.1 MVP 从第三篇（GPU+NPU 核心）起步。
+如果你主要想补“调度”，先读第2章、第4章、第5章、第7章和第15章。
 
 ## 内容入口
 
@@ -41,29 +54,30 @@
 
 | 章 | 角色 | 主要内容 | 完成状态 | 正文 |
 |---|---|---|---|---|
-| 第1章 | 并行基础 | 为什么需要并行计算 | 已完成 | [正文](docs/part1-foundations/01-why-parallel.md) |
-| 第2章 | 桥接 | 线程、同步和可见性基础 | 基本完成 | [正文](docs/part1-foundations/02-os-parallel-basics.md) |
-| 第3章 | 并行基础 | 常见并行模式与抽象 | 已完成 | [正文](docs/part1-foundations/03-parallel-patterns.md) |
-| 第4章 | CPU 主机侧工程 | pthread、线程池与任务组织 | 基本完成 | [正文](docs/part2-host-cpu/04-cpu-multithreading.md) |
-| 第5章 | CPU 主机侧工程 | OpenMP 并行写法与调度 | 已完成 | [正文](docs/part2-host-cpu/05-openmp.md) |
-| 第6章 | CPU 主机侧工程 | SIMD、向量化和 intrinsic | 已完成 | [正文](docs/part2-host-cpu/06-simd.md) |
-| 第7章 | 主机侧收口 | CPU 在异构系统中的职责 | 基本完成 | [正文](docs/part2-host-cpu/07-cpu-in-hetero.md) |
-| 第8章 | 协处理器导读 | GPU/NPU 视角和选型前导 | 已完成 | [正文](docs/part3-coprocessor/08-coprocessor-overview.md) |
-| 第9章 | GPU 主线 | CUDA 编程模型和内存层次 | 已完成 | [正文](docs/part3-coprocessor/09-gpu-cuda.md) |
-| 第10章 | GPU 工具链 | profiler、时间线和瓶颈定位 | 已完成 | [正文](docs/part3-coprocessor/10-gpu-profiling.md) |
-| 第11章 | NPU 接入模板 | 模型转换、量化和板端部署 | 已完成 | [正文](docs/part3-coprocessor/11-npu-tpu.md) |
-| 第12章 | 跨平台补充 | OpenCL/SYCL 等跨平台模型 | 基本完成 | [正文](docs/part3-coprocessor/12-cross-platform.md) |
-| 第13章 | 方法论收口 | 性能分析标准流程 | 已完成 | [正文](docs/part4-systems/13-performance-methodology.md) |
-| 第14章 | 系统案例 | 端到端异构案例与实验 | 已完成 | [正文](docs/part4-systems/14-end-to-end-cases.md) |
-| 第15章 | 系统协同 | CPU/GPU/NPU 协同和 DAG | 已完成 | [正文](docs/part4-systems/15-system-coordination.md) |
-| 第16章 | 决策出口 | 技术选型、成本和产品决策 | 已完成 | [正文](docs/part4-systems/16-decision-guide.md) |
+| 第1章 | 并行基础 | 为什么需要并行计算 | 已完成 | [目录页](docs/part01-foundations/chapter01-why-parallel/README.md) |
+| 第2章 | 桥接 | 线程、同步和可见性基础 | 已完成 | [目录页](docs/part01-foundations/chapter02-os-parallel-basics/README.md) |
+| 第3章 | 并行基础 | 常见并行模式与抽象 | 已完成 | [目录页](docs/part01-foundations/chapter03-parallel-patterns/README.md) |
+| 第4章 | Host 控制面 | pthread、线程池与任务组织 | 已完成 | [目录页](docs/part02-host-cpu/chapter04-cpu-multithreading/README.md) |
+| 第5章 | Host 数据并行 | OpenMP 并行写法、循环调度与数据划分 | 已完成 | [目录页](docs/part02-host-cpu/chapter05-openmp/README.md) |
+| 第6章 | Host 执行效率 | SIMD、向量化和数据布局 | 已完成 | [目录页](docs/part02-host-cpu/chapter06-simd/README.md) |
+| 第7章 | Host-Device 协同 | 数据放置、搬运、异步提交和同步 | 基本完成 | [目录页](docs/part02-host-cpu/chapter07-cpu-in-hetero/README.md) |
+| 第8章 | GPU 执行模型 | 设备内存、协处理器分类与上卡判断 | 已完成 | [目录页](docs/part03-coprocessor/chapter08-coprocessor-overview/README.md) |
+| 第9章 | GPU 编程与算子 | CUDA 编程模型、内存层次和基础算子 | 已完成 | [目录页](docs/part03-coprocessor/chapter09-gpu-cuda/README.md) |
+| 第10章 | GPU 性能与云端视角 | profiler、时间线和高吞吐服务瓶颈 | 已完成 | [目录页](docs/part03-coprocessor/chapter10-gpu-profiling/README.md) |
+| 第11章 | AI 加速器部署 | 模型转换、量化、运行时与设备验证 | 已完成 | [目录页](docs/part03-coprocessor/chapter11-npu-tpu/README.md) |
+| 第12章 | 跨平台选读 | OpenCL/SYCL 的可移植性边界 | 已完成 | [目录页](docs/part03-coprocessor/chapter12-cross-platform/README.md) |
+| 第13章 | 系统性能方法 | 端到端测量、瓶颈分类和复测 | 已完成 | [目录页](docs/part04-systems/chapter13-performance-methodology/README.md) |
+| 第14章 | 云边系统案例 | 云端推理调度、边缘视觉与端到端实验 | 已完成 | [目录页](docs/part04-systems/chapter14-end-to-end-cases/README.md) |
+| 第15章 | 系统协同 | CPU/GPU/NPU 协同、任务图和同步 | 已完成 | [目录页](docs/part04-systems/chapter15-system-coordination/README.md) |
+| 第16章 | 云边部署决策 | 技术选型、成本和产品决策 | 已完成 | [目录页](docs/part04-systems/chapter16-decision-guide/README.md) |
 
 - [前言](docs/00-preface.md)
-- **第一篇 预备篇** — 并行计算基础 · [目录](docs/part1-foundations/)
-- **第二篇 主处理器篇** — CPU并行编程 · [目录](docs/part2-host-cpu/)
-- **第三篇 协处理器篇** — GPU与AI加速器（核心）· [目录](docs/part3-coprocessor/)
-- **第四篇 综合篇** — 系统设计与实战 · [目录](docs/part4-systems/)
-- [附录](docs/appendix/)
+- **第一篇 并行计算的系统基础** — 性能约束、并发时序与工作负载模式 · [目录](docs/part01-foundations/README.md)
+- **第二篇 Host 并行编程模型与控制面** — 任务、循环、lane 与异构协同 · [目录](docs/part02-host-cpu/README.md)
+- **第三篇 GPU 与 AI 加速器篇** — 云端计算与部署主线 · [目录](docs/part03-coprocessor/README.md)
+- **第四篇 云边系统篇** — 系统协同、测量与决策 · [目录](docs/part04-systems/README.md)
+- [附录：环境、术语、公式与 FAQ](docs/appendix/README.md)
+- [示例索引](examples/README.md)
 
 ## 运行与环境
 
@@ -74,12 +88,23 @@ docker/      容器环境
 CMakeLists.txt 统一构建（可选）
 ```
 
-### 快速验证
+### Quickstart：5 分钟完成本地 CPU 验证
+
+前置条件：Linux、CMake 3.18+、支持 OpenMP 的 C 编译器、Python 3。
 
 ```bash
-cd examples/ch09_vec_add && make run   # 无需 GPU，几秒内看到 CPU 串行 vs OpenMP 对比
+cmake -S . -B build
+cmake --build build
+ctest --test-dir build -L 'cpu|python' --output-on-failure
+./build/ch09_vec_add 4099
 ```
+
+预期结果：CPU 正确性测试与部署报告契约通过；`ch09_vec_add` 输出串行与 OpenMP 对照，并显示校验通过。
+
+下一步：有 NVIDIA GPU 看 [CUDA 环境](docs/environment/nvidia-cuda.md)；有 Jetson Orin Nano 看 [Jetson 环境](docs/environment/jetson-orin.md)；需要 NPU 对照看 [NPU 环境](docs/environment/npu.md)。
+
+没有 GPU 或开发板也可以完成 [第一阶段](docs/TASKS.md#无硬件学习路径)：先做 CPU 正确性、Host 调度和算子分析，再运行模拟部署与流水线报告；只有真实性能和厂商 SDK 兼容性需要对应硬件验证。第一阶段完成后，再从[第二阶段专题](docs/phase2/README.md)选择深入方向。
 
 ### 运行环境
 
-详见 [使用说明](docs/USAGE.md) 与 [附录A 实验环境搭建指南](docs/appendix/A-environment-setup.md)。最低要求：Linux + GCC；GPU 需要 CUDA Toolkit，NPU 需要对应开发板。
+环境选择见 [环境部署说明](docs/ENVIRONMENT.md)，最短学习路径见 [使用说明](docs/USAGE.md)。

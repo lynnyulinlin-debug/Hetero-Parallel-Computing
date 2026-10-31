@@ -1,46 +1,13 @@
-# 附录A 实验环境搭建指南
+# 附录 A：按学习任务选择环境
 
-> 目标：让你按需搭好运行各章示例的环境。CPU 示例零门槛，GPU/NPU 按硬件可选。
+本附录不重复平台安装步骤，只帮助读者按当前任务选择环境。
 
-## A.1 最低环境（运行 CPU 示例）
+| 学习目标 | 所需环境 | 入口 |
+|---|---|---|
+| 第一阶段 Task 0-3：本地基础 | Linux、CMake、C 编译器、OpenMP | [CPU / Host](../environment/cpu.md) |
+| CUDA 算子与 profiling | NVIDIA GPU、CUDA Toolkit | [NVIDIA CUDA](../environment/nvidia-cuda.md) |
+| Task 5：真实边缘视觉 | Jetson Orin Nano、JetPack、TensorRT | [Jetson Orin Nano](../environment/jetson-orin.md) |
+| NPU 部署对照 | RK3588/RKNN、昇腾/CANN 等 | [NPU 平台](../environment/npu.md) |
+| 复现 CPU/CUDA 构建 | Docker | [容器](../environment/containers.md) |
 
-- Linux（Ubuntu 20.04+ 推荐）
-- GCC 9+（自带 OpenMP，`-fopenmp` 即可）
-- `make`
-
-验证：
-
-```bash
-cd examples/ch09_vec_add && make run
-```
-
-看到串行 vs OpenMP 的计时与 `[verify] PASS` 即成功。
-
-## A.2 GPU 环境（NVIDIA）
-
-- NVIDIA GPU（计算能力 5.0+）
-- CUDA Toolkit 11+（含 `nvcc`）
-- 驱动版本与 CUDA 版本匹配（用 `nvidia-smi` 检查）
-
-验证：
-
-```bash
-cd examples/ch09_vec_add && make USE_CUDA=1 run
-```
-
-性能分析工具：Nsight Systems（`nsys`）、Nsight Compute（`ncu`）。
-如果机器没有 CUDA 设备，`examples/ch09_reduce` 仍会完成 CPU 部分并自动跳过 CUDA 测试。
-
-## A.3 NPU 开发板（可选）
-
-强依赖具体硬件，三选一：
-
-- **RKNN（瑞芯微）**：rknn-toolkit2 + 对应开发板（RK3588 等）。
-- **TFLite delegate**：支持 NNAPI/GPU delegate 的设备。
-- **昇腾（Ascend）**：CANN 工具链 + Atlas 开发板。
-
-详见 `examples/ch11_npu_deploy/README.md` 的硬件依赖说明。
-
-## A.4 容器环境（推荐用于复现）
-
-见 `docker/` 目录。容器封装编译器、CUDA 运行时与依赖，避免环境漂移。
+所有路径先完成 CPU CTest；GPU、Jetson 与 NPU 环境再按实际硬件启用。模拟输出不能替代真实设备测量。

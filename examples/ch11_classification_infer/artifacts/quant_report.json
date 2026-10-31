@@ -1,0 +1,9 @@
+{
+  "status": "ok",
+  "artifact": "artifacts/model.quant",
+  "task": "classification",
+  "num_calibration_samples": 3,
+  "source_onnx_exists": true,
+  "calibration_dir_exists": true,
+  "calibration_list_exists": true
+}

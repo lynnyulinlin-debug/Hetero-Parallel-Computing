@@ -1,0 +1,3 @@
+samples/test_0001.jpg
+samples/test_0002.jpg
+samples/test_0003.jpg

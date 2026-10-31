@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">单流串行与多流重叠的时间线</title>
+  <desc id="desc">单流依次执行主机到设备传输、kernel 和设备到主机传输；多流按分块交错执行传输与计算以缩短总时间。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.panel{fill:#fff;stroke:#d6d3c7;stroke-width:2}.title{font:700 28px sans-serif;fill:#172033}.label{font:700 18px sans-serif;fill:#172033}.text{font:500 15px sans-serif;fill:#334155}.small{font:500 14px sans-serif;fill:#475569}.h2d{fill:#e0ecff;stroke:#2563eb}.kernel{fill:#fff0df;stroke:#e85d04}.d2h{fill:#dcf5ed;stroke:#0f766e}.sync{stroke:#7c3aed;stroke-width:3;stroke-dasharray:6 6}
+  </style>
+  <rect class="bg" width="1200" height="620" rx="24"/>
+  <text class="title" x="55" y="60">传输与计算：串行等待 vs 分块重叠</text>
+  <text class="small" x="55" y="88">异步不等于没有同步；关键是把必要等待放到另一批工作仍可推进的时间段。</text>
+  <rect class="panel" x="55" y="125" width="1090" height="180" rx="16"/>
+  <text class="label" x="85" y="165">单流：每一批完整走完才开始下一步</text>
+  <text class="small" x="85" y="205">Host / PCIe</text><line x1="210" y1="200" x2="1080" y2="200" stroke="#cbd5e1" stroke-width="2"/>
+  <rect class="h2d" x="235" y="180" width="180" height="40" rx="6"/><text class="text" x="295" y="206">H2D</text>
+  <text class="small" x="85" y="265">Device</text><line x1="210" y1="260" x2="1080" y2="260" stroke="#cbd5e1" stroke-width="2"/>
+  <rect class="kernel" x="430" y="240" width="250" height="40" rx="6"/><text class="text" x="510" y="266">kernel</text>
+  <rect class="d2h" x="695" y="180" width="180" height="40" rx="6"/><text class="text" x="755" y="206">D2H</text>
+  <text class="small" x="895" y="257">总时间：三段相加</text>
+  <rect class="panel" x="55" y="345" width="1090" height="220" rx="16"/>
+  <text class="label" x="85" y="385">多流：分块后让下一批传输与当前批计算交错</text>
+  <text class="small" x="85" y="430">Stream 0</text><line x1="210" y1="425" x2="1080" y2="425" stroke="#cbd5e1" stroke-width="2"/>
+  <rect class="h2d" x="235" y="405" width="120" height="40" rx="6"/><text class="small" x="265" y="431">H2D A</text><rect class="kernel" x="370" y="405" width="180" height="40" rx="6"/><text class="small" x="430" y="431">kernel A</text><rect class="d2h" x="565" y="405" width="120" height="40" rx="6"/><text class="small" x="595" y="431">D2H A</text>
+  <text class="small" x="85" y="500">Stream 1</text><line x1="210" y1="495" x2="1080" y2="495" stroke="#cbd5e1" stroke-width="2"/>
+  <rect class="h2d" x="370" y="475" width="120" height="40" rx="6"/><text class="small" x="400" y="501">H2D B</text><rect class="kernel" x="565" y="475" width="180" height="40" rx="6"/><text class="small" x="625" y="501">kernel B</text><rect class="d2h" x="760" y="475" width="120" height="40" rx="6"/><text class="small" x="790" y="501">D2H B</text>
+  <line class="sync" x1="700" y1="395" x2="700" y2="530"/><text class="small" x="712" y="550">事件同步：复用缓冲区前确认上一批完成</text>
+  <text class="small" x="55" y="598">图例：蓝色 H2D 传输，橙色 kernel，绿色 D2H 回传。重叠是否成立取决于任务粒度、缓冲区和同步点。</text>
+</svg>

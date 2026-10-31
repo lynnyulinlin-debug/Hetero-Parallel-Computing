@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""NPU PTQ 量化脚手架。
+"""量化阶段的教学脚本。
 
-当前版本不依赖厂商 SDK，先把校准集、后端选择和量化报告格式固定下来。
+这一步把校准集、量化方案和后端选择固定下来，重点是理解量化前后为什么要保留可检查的中间报告。
 """
 
 from __future__ import annotations
@@ -38,6 +38,7 @@ def quantize_model(
     calib_dir_exists = calib_dir.exists()
     calib_list_exists = calib_list.exists()
 
+    # 教学版量化产物：保留后端、位宽和校准样本信息，便于分析精度变化。
     artifact = {
         "format": "quantized",
         "backend": backend,

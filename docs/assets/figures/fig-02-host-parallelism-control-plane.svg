@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">Host 并行编程模型与控制面</title>
+  <desc id="desc">图示第4章任务生命周期、第5章循环工作划分、第6章 SIMD lane 和第7章 Host-Device 控制面之间的关系。前三级可叠加，第7章将它们置于数据移动、异步提交和同步边界中。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 19px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.card{fill:#fff;stroke:#d6d3c7;stroke-width:2}.task{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.loop{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.lane{fill:#fff0df;stroke:#e85d04;stroke-width:2}.control{fill:#f3e8ff;stroke:#7c3aed;stroke-width:2}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#arrow)}.dash{stroke:#7c3aed;stroke-width:2.5;stroke-dasharray:8 6;fill:none}
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="660" rx="24"/>
+  <text class="t" x="55" y="60">Host 并行编程模型：表达工作、提高局部效率、控制异构节奏</text>
+  <text class="s" x="55" y="88">第4-6章回答 Host 如何执行工作；第7章回答 Host 如何在 Device 参与后组织数据、提交和同步。</text>
+  <rect class="task" x="55" y="155" width="250" height="210" rx="16"/><text class="l" x="85" y="195">第4章：任务级</text><text class="s" x="85" y="230">线程、队列、等待、关闭</text><text class="s" x="85" y="258">问题：任务谁执行、何时收口？</text><text class="s" x="85" y="286">风险：竞态、过碎任务、退出</text><text class="s" x="85" y="330">适合：不规则任务与显式生命周期</text>
+  <rect class="loop" x="335" y="155" width="250" height="210" rx="16"/><text class="l" x="365" y="195">第5章：循环级</text><text class="s" x="365" y="230">OpenMP、作用域、调度</text><text class="s" x="365" y="258">问题：循环怎样安全地分配？</text><text class="s" x="365" y="286">风险：变量归属、负载不均</text><text class="s" x="365" y="330">适合：规则、可切分的循环</text>
+  <rect class="lane" x="615" y="155" width="250" height="210" rx="16"/><text class="l" x="645" y="195">第6章：指令级</text><text class="s" x="645" y="230">SIMD、数据布局、lane</text><text class="s" x="645" y="258">问题：单核怎样处理更多元素？</text><text class="s" x="645" y="286">风险：依赖、访问、尾部处理</text><text class="s" x="645" y="330">适合：连续、重复的热点循环</text>
+  <path class="arrow" d="M305 260H330"/><path class="arrow" d="M585 260H610"/>
+  <text class="s" x="250" y="130">可叠加，而非互斥</text>
+  <rect class="control" x="55" y="445" width="1090" height="135" rx="18"/><text class="l" x="85" y="485">第7章：Host 控制面</text><text class="s" x="85" y="518">数据放置 -> 分块与提交 -> 异步执行 -> 事件同步 -> 结果收口</text><text class="s" x="85" y="548">问题：数据何时到哪里、缓冲区何时可复用、等待点如何只服务真实依赖？</text>
+  <path class="dash" d="M180 365V440"/><path class="dash" d="M460 365V440"/><path class="dash" d="M740 365V440"/>
+  <rect class="card" x="900" y="155" width="245" height="210" rx="16"/><text class="l" x="930" y="195">进入第8章前</text><text class="s" x="930" y="230">Part02 已明确：</text><text class="s" x="930" y="258">Host 的任务、循环与数据</text><text class="s" x="930" y="282">如何被组织和同步。</text><text class="s" x="930" y="326">第8章转向 Device</text><text class="s" x="930" y="348">执行模型与上卡判断。</text>
+</svg>

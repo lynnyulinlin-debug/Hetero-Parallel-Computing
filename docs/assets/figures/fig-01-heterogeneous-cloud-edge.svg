@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">异构计算在云端和边缘端的职责分工</title>
+  <desc id="desc">CPU 负责控制，GPU 负责高吞吐计算，NPU 负责高能效推理；云端与边缘端组合不同的硬件职责。</desc>
+  <style>
+    .bg { fill: #f8f7f2; } .panel { fill: #ffffff; stroke: #d6d3c7; stroke-width: 2; }
+    .cpu { fill: #e0ecff; stroke: #2563eb; } .gpu { fill: #fff0df; stroke: #e85d04; }
+    .npu { fill: #dcf5ed; stroke: #0f766e; } .edge { fill: #f0e8ff; stroke: #7c3aed; }
+    .head { font: 700 28px sans-serif; fill: #172033; } .sub { font: 500 17px sans-serif; fill: #475569; }
+    .label { font: 700 19px sans-serif; fill: #172033; } .text { font: 500 16px sans-serif; fill: #334155; }
+    .small { font: 500 14px sans-serif; fill: #475569; } .arrow { stroke: #64748b; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker></defs>
+  <rect class="bg" width="1200" height="680" rx="24"/>
+  <text class="head" x="60" y="62">异构并行计算的两条部署路径</text>
+  <text class="sub" x="60" y="92">计算单元的职责相对稳定，云端与边缘端决定它们的组合方式和验收指标。</text>
+  <rect class="panel" x="55" y="130" width="520" height="470" rx="18"/>
+  <text class="label" x="85" y="170">云端 / 数据中心</text>
+  <text class="small" x="85" y="196">目标：吞吐、batch、多设备、服务排队、可观测性</text>
+  <rect class="cpu" x="100" y="245" width="170" height="105" rx="12" stroke-width="2"/>
+  <text class="label" x="125" y="281">CPU</text><text class="text" x="125" y="310">请求编排</text><text class="text" x="125" y="334">数据准备 / 汇聚</text>
+  <rect class="gpu" x="355" y="220" width="170" height="130" rx="12" stroke-width="2"/>
+  <text class="label" x="382" y="257">GPU</text><text class="text" x="382" y="286">通用算子</text><text class="text" x="382" y="310">训练 / 高吞吐推理</text>
+  <rect class="npu" x="355" y="420" width="170" height="110" rx="12" stroke-width="2"/>
+  <text class="label" x="382" y="457">AI 加速器</text><text class="text" x="382" y="486">固定模型推理</text><text class="small" x="382" y="510">例如数据中心 NPU</text>
+  <path class="arrow" d="M270 296 H340"/><path class="arrow" d="M270 310 C320 330 320 450 340 470"/>
+  <text class="small" x="210" y="390">调度、批处理、结果收口</text>
+  <rect class="panel" x="625" y="130" width="520" height="470" rx="18"/>
+  <text class="label" x="655" y="170">边缘端 / 设备侧</text>
+  <text class="small" x="655" y="196">目标：低延迟、功耗、输入就近、离线能力、量产维护</text>
+  <rect class="edge" x="675" y="245" width="170" height="210" rx="12" stroke-width="2"/>
+  <text class="label" x="702" y="282">边缘 SoC</text><text class="text" x="702" y="316">CPU：采集与控制</text><text class="text" x="702" y="344">GPU：显示 / 图像</text><text class="text" x="702" y="372">NPU：主模型推理</text><text class="small" x="702" y="407">例如 RK3588</text>
+  <rect class="npu" x="930" y="285" width="160" height="120" rx="12" stroke-width="2"/>
+  <text class="label" x="957" y="323">模型运行时</text><text class="text" x="957" y="352">量化模型</text><text class="text" x="957" y="378">设备验证</text>
+  <path class="arrow" d="M845 350 H915"/>
+  <text class="small" x="655" y="525">同一模型可以云端批量服务，也可以边缘端就近推理；选择由约束决定。</text>
+  <rect x="55" y="625" width="20" height="20" rx="4" fill="#e0ecff" stroke="#2563eb"/><text class="small" x="84" y="641">CPU / Host 控制面</text>
+  <rect x="270" y="625" width="20" height="20" rx="4" fill="#fff0df" stroke="#e85d04"/><text class="small" x="299" y="641">GPU 高吞吐计算</text>
+  <rect x="480" y="625" width="20" height="20" rx="4" fill="#dcf5ed" stroke="#0f766e"/><text class="small" x="509" y="641">NPU / AI 加速器</text>
+</svg>

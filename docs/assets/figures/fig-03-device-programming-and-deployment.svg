@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 670" role="img" aria-labelledby="title desc">
+  <title id="title">Device 执行模型、GPU 编程与 AI 加速器部署</title>
+  <desc id="desc">第8章作为共同判断入口，分出 GPU 编程和性能分析路径、AI 加速器部署路径，以及仅在多后端需求存在时进入的跨平台选读路径。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.title{font:700 28px sans-serif;fill:#172033}.head{font:700 20px sans-serif;fill:#172033}.txt{font:500 15px sans-serif;fill:#475569}.card{stroke-width:2}.entry{fill:#e8eefc;stroke:#2563eb}.gpu{fill:#fff0df;stroke:#e85d04}.ai{fill:#dcf5ed;stroke:#0f766e}.port{fill:#f3e8ff;stroke:#7c3aed}.note{fill:#fff;stroke:#d6d3c7;stroke-width:2}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#a)}.dash{stroke:#7c3aed;stroke-width:2.5;stroke-dasharray:8 6;fill:none;marker-end:url(#a)}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="670" rx="24"/>
+  <text class="title" x="55" y="60">第三篇：先做 Device 判断，再进入对应的实现闭环</text>
+  <text class="txt" x="55" y="88">共同问题：计算密度、搬运成本、模型稳定性和部署位置是否支持把工作交给 Device？</text>
+  <rect class="entry card" x="390" y="130" width="420" height="155" rx="18"/>
+  <text class="head" x="425" y="172">第8章：Device 判断入口</text>
+  <text class="txt" x="425" y="207">Host/Device 内存边界 · GPU/NPU 的设计取向</text>
+  <text class="txt" x="425" y="235">算术强度 · 传输成本 · 云端/边缘部署约束</text>
+  <text class="txt" x="425" y="263">输出：是否卸载，以及优先进入哪条路径</text>
+  <rect class="gpu card" x="55" y="405" width="330" height="180" rx="18"/>
+  <text class="head" x="85" y="448">GPU 路径：第9-10章</text>
+  <text class="txt" x="85" y="482">线程映射、内存层次、kernel、stream</text>
+  <text class="txt" x="85" y="510">-> 时间线、局部指标、改动与复测</text>
+  <text class="txt" x="85" y="550">闭环：编程 -> 测量 -> 优化</text>
+  <rect class="ai card" x="435" y="405" width="330" height="180" rx="18"/>
+  <text class="head" x="465" y="448">AI 加速器路径：第11章</text>
+  <text class="txt" x="465" y="482">固定模型、算子兼容、低精度与能效</text>
+  <text class="txt" x="465" y="510">-> 转换、量化、运行时、设备验证</text>
+  <text class="txt" x="465" y="550">闭环：模型 -> 部署 -> 验证</text>
+  <rect class="port card" x="815" y="405" width="330" height="180" rx="18"/>
+  <text class="head" x="845" y="448">选读：第12章</text>
+  <text class="txt" x="845" y="482">只在多后端交付已确定时进入</text>
+  <text class="txt" x="845" y="510">开放接口带来复用，也增加构建、</text>
+  <text class="txt" x="845" y="534">调试和性能维护责任</text>
+  <path class="arrow" d="M500 285L220 397"/><path class="arrow" d="M600 285V397"/><path class="dash" d="M700 285L980 397"/>
+  <rect class="note" x="55" y="620" width="1090" height="1" rx="0"/>
+  <text class="txt" x="55" y="650">TPU 在本书中只作为 AI 加速器的设计取向对照；没有独立工具链、实验与验收闭环前，不拆出单独章节。</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="430" viewBox="0 0 1060 430" role="img" aria-labelledby="title desc">
+ <title id="title">RK3588 RV1828 edge vision pipeline</title><desc id="desc">A three-layer edge vision task graph from capture through inference to display and upload.</desc>
+ <style>text{font-family:Arial,sans-serif;fill:#18324a}.title{font-size:25px;font-weight:700}.layer{font-size:16px;font-weight:700;fill:#527084}.label{font-size:17px;font-weight:700}.note{font-size:13px;fill:#527084}.source{fill:#e5f1f9;stroke:#2979a9;stroke-width:2}.capture{fill:#fff0dc;stroke:#dc861f;stroke-width:2}.npu{fill:#e9f3e5;stroke:#619243;stroke-width:2}.cpu{fill:#f3eaf1;stroke:#a6638e;stroke-width:2}.output{fill:#edf4e9;stroke:#619243;stroke-width:2}.line{fill:none;stroke:#6d8291;stroke-width:3}.dash{fill:none;stroke:#6d8291;stroke-width:2;stroke-dasharray:7 6}.arrow{fill:#6d8291}</style>
+ <rect width="1060" height="430" fill="#f8f7f2"/><text x="42" y="49" class="title">RK3588 + RV1828: edge vision task graph</text>
+ <text x="45" y="102" class="layer">SOURCE</text><text x="45" y="220" class="layer">COMPUTE</text><text x="45" y="355" class="layer">OUTPUT</text>
+ <rect x="140" y="73" width="170" height="66" rx="10" class="source"/><text x="192" y="102" class="label">Camera</text><text x="171" y="124" class="note">video / RTSP input</text>
+ <rect x="383" y="185" width="176" height="76" rx="10" class="capture"/><text x="426" y="216" class="label">RV1828</text><text x="409" y="239" class="note">capture, ISP, decode</text>
+ <rect x="644" y="185" width="170" height="76" rx="10" class="npu"/><text x="690" y="216" class="label">RK NPU</text><text x="681" y="239" class="note">model inference</text>
+ <rect x="644" y="302" width="170" height="66" rx="10" class="cpu"/><text x="685" y="331" class="label">RK CPU</text><text x="672" y="352" class="note">postprocess, logic</text>
+ <rect x="884" y="302" width="135" height="66" rx="10" class="output"/><text x="912" y="331" class="label">Display</text><text x="907" y="352" class="note">upload / alert</text>
+ <path d="M225 139v47h138" class="line"/><path d="M363 186l-10-7v14z" class="arrow"/><path d="M559 223h65" class="line"/><path d="M624 223l-10-7v14z" class="arrow"/><path d="M729 261v21" class="line"/><path d="M729 282l-7-10h14z" class="arrow"/><path d="M814 335h49" class="line"/><path d="M863 335l-10-7v14z" class="arrow"/>
+ <path d="M559 245c40 46 46 58 65 74" class="dash"/><text x="524" y="303" class="note">queue / device boundary</text>
+ <text x="140" y="408" class="note">Different frames can occupy capture, inference and postprocess stages simultaneously; queues isolate device boundaries and control backpressure.</text>
+</svg>

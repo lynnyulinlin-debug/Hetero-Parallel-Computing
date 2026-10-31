@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 570" role="img" aria-labelledby="title desc">
+  <title id="title">SIMD intrinsics 的加载、计算与存储三段式</title>
+  <desc id="desc">概念图显示程序员用 intrinsics 显式组织连续数据加载、向量 lane 计算和结果存储，同时需要自行处理对齐、尾部和架构差异。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 20px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.mem{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.compute{fill:#fff0df;stroke:#e85d04;stroke-width:2}.out{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.warn{fill:#fee2e2;stroke:#dc2626;stroke-width:2}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#arrow)}
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="570" rx="24"/>
+  <text class="t" x="55" y="60">intrinsics：把加载、lane 计算和存储显式写进代码</text>
+  <text class="s" x="55" y="88">它提供更细的控制，但把原本由编译器承担的细节交回给程序员。</text>
+  <rect class="mem" x="65" y="185" width="290" height="175" rx="16"/><text class="l" x="105" y="228">1. load</text><text class="l" x="105" y="260">连续数据 -> 向量寄存器</text><text class="s" x="105" y="296">loadu / load、对齐、边界</text><g transform="translate(105 315)"><rect class="mem" width="45" height="24" rx="3"/><rect class="mem" x="47" width="45" height="24" rx="3"/><rect class="mem" x="94" width="45" height="24" rx="3"/><rect class="mem" x="141" width="45" height="24" rx="3"/></g>
+  <rect class="compute" x="455" y="185" width="290" height="175" rx="16"/><text class="l" x="495" y="228">2. compute</text><text class="l" x="495" y="260">每个 lane 执行同类运算</text><text class="s" x="495" y="296">add / mul / fma、shuffle、mask</text><g transform="translate(495 315)"><rect class="compute" width="45" height="24" rx="3"/><rect class="compute" x="47" width="45" height="24" rx="3"/><rect class="compute" x="94" width="45" height="24" rx="3"/><rect class="compute" x="141" width="45" height="24" rx="3"/></g>
+  <rect class="out" x="845" y="185" width="290" height="175" rx="16"/><text class="l" x="885" y="228">3. store</text><text class="l" x="885" y="260">向量寄存器 -> 连续结果</text><text class="s" x="885" y="296">store、尾部元素、写回顺序</text><g transform="translate(885 315)"><rect class="out" width="45" height="24" rx="3"/><rect class="out" x="47" width="45" height="24" rx="3"/><rect class="out" x="94" width="45" height="24" rx="3"/><rect class="out" x="141" width="45" height="24" rx="3"/></g>
+  <path class="arrow" d="M355 272H450"/><path class="arrow" d="M745 272H840"/>
+  <rect class="warn" x="65" y="420" width="1070" height="82" rx="14"/><text class="l" x="95" y="451">手写控制的代价：架构专属类型、尾部处理、对齐与可读性都由你维护。</text><text class="s" x="95" y="479">只有自动向量化已不足、且性能瓶颈经过测量确认时，才值得进入这层；否则优先改善循环结构和数据布局。</text>
+</svg>

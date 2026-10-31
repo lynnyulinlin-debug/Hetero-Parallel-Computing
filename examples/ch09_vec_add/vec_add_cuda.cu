@@ -12,7 +12,7 @@ __global__ void vec_add_kernel(const float *a, const float *b, float *c, int n) 
     }
 }
 
-void vec_add_cuda(const float *a, const float *b, float *c, int n) {
+extern "C" void vec_add_cuda(const float *a, const float *b, float *c, int n) {
     float *d_a = nullptr, *d_b = nullptr, *d_c = nullptr;
     size_t bytes = (size_t)n * sizeof(float);
 

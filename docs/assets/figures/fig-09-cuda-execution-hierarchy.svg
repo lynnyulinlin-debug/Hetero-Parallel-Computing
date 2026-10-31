@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">CUDA 执行层级与一维索引</title>
+  <desc id="desc">一个 grid 包含多个 block，一个 block 包含多个 warp 和 thread，全局索引由 blockIdx 和 threadIdx 组成。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.grid{fill:#eef5ff;stroke:#2563eb;stroke-width:2}.block{fill:#fff0df;stroke:#e85d04;stroke-width:2}.warp{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.thread{fill:#fff;stroke:#64748b;stroke-width:1.5}.title{font:700 28px sans-serif;fill:#172033}.label{font:700 18px sans-serif;fill:#172033}.text{font:500 16px sans-serif;fill:#334155}.small{font:500 14px sans-serif;fill:#475569}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#a)}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="650" rx="24"/>
+  <text class="title" x="55" y="60">CUDA 执行层级：谁执行哪一个元素</text>
+  <text class="small" x="55" y="88">逻辑层级决定任务划分；warp 是硬件调度的最小单位，block 是共享内存和同步的边界。</text>
+  <rect class="grid" x="55" y="130" width="710" height="430" rx="18"/>
+  <text class="label" x="80" y="166">Grid</text><text class="small" x="145" y="166">一次 kernel launch 的全部工作</text>
+  <rect class="block" x="90" y="205" width="290" height="300" rx="14"/>
+  <text class="label" x="110" y="237">Block 0</text>
+  <rect class="warp" x="115" y="265" width="240" height="74" rx="10"/><text class="text" x="133" y="292">Warp 0</text>
+  <g transform="translate(130 306)"><rect class="thread" width="30" height="20"/><rect class="thread" x="35" width="30" height="20"/><rect class="thread" x="70" width="30" height="20"/><rect class="thread" x="105" width="30" height="20"/><rect class="thread" x="140" width="30" height="20"/><rect class="thread" x="175" width="30" height="20"/><text class="small" x="0" y="52">threadIdx: 0 ... 31</text></g>
+  <rect class="warp" x="115" y="385" width="240" height="74" rx="10"/><text class="text" x="133" y="412">Warp 1</text><text class="small" x="133" y="440">下一组 32 个线程</text>
+  <rect class="block" x="425" y="205" width="290" height="300" rx="14"/>
+  <text class="label" x="445" y="237">Block 1</text>
+  <rect class="warp" x="450" y="265" width="240" height="74" rx="10"/><text class="text" x="468" y="292">Warp 0</text><text class="small" x="468" y="320">threadIdx: 0 ... 31</text>
+  <rect class="warp" x="450" y="385" width="240" height="74" rx="10"/><text class="text" x="468" y="412">Warp 1</text><text class="small" x="468" y="440">同一 block 内可同步</text>
+  <rect x="825" y="160" width="320" height="180" rx="16" fill="#fff" stroke="#d6d3c7" stroke-width="2"/>
+  <text class="label" x="850" y="205">一维全局索引</text><text class="text" x="850" y="248">i = blockIdx.x * blockDim.x</text><text class="text" x="850" y="276">    + threadIdx.x</text><text class="small" x="850" y="315">一个 thread 处理一个 i</text>
+  <rect x="825" y="390" width="320" height="120" rx="16" fill="#fff" stroke="#d6d3c7" stroke-width="2"/>
+  <text class="label" x="850" y="430">三个判断</text><text class="small" x="850" y="459">block 决定协作边界</text><text class="small" x="850" y="482">warp 影响分支与访存效率</text>
+  <path class="arrow" d="M765 300 H810"/>
+  <text class="small" x="55" y="610">先把数据元素映射到 thread，再考虑 block 内复用和跨 block 的并行度。</text>
+</svg>

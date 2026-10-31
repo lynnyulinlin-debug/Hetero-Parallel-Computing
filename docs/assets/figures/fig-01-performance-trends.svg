@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">从单核频率到并行能力的性能路径</title>
+  <desc id="desc">概念图说明单核频率受功耗和散热限制，性能增长转向多核、SIMD 和专用加速器，但软件仍需提供足够并行工作。</desc>
+  <style>
+    .bg{fill:#f8f7f2}.panel{fill:#fff;stroke:#d6d3c7;stroke-width:2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 19px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.line{stroke:#64748b;stroke-width:3;fill:none}.blue{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.orange{fill:#fff0df;stroke:#e85d04;stroke-width:2}.green{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.warn{fill:#fee2e2;stroke:#dc2626;stroke-width:2}.accent{stroke:#e85d04;stroke-width:5;fill:none}
+  </style>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <rect class="bg" width="1200" height="620" rx="24"/>
+  <text class="t" x="55" y="60">性能增长的重心：从更高主频转向更多可并行工作</text>
+  <text class="s" x="55" y="88">这是机制示意，不表示某一代芯片的实际频率、核数或性能数据。</text>
+  <rect class="panel" x="55" y="130" width="430" height="340" rx="18"/>
+  <text class="l" x="85" y="172">单核路径</text>
+  <line class="line" x1="110" y1="405" x2="435" y2="405"/><line class="line" x1="110" y1="405" x2="110" y2="225"/>
+  <path class="accent" d="M120 382 C175 335 215 290 270 260 S365 230 425 250"/>
+  <text class="s" x="125" y="435">时间 / 工艺演进</text><text class="s" x="124" y="218">单线程性能</text>
+  <rect class="warn" x="260" y="270" width="150" height="74" rx="10"/><text class="l" x="282" y="300">功耗与散热墙</text><text class="s" x="278" y="324">主频继续上升困难</text>
+  <rect class="panel" x="545" y="130" width="600" height="340" rx="18"/>
+  <text class="l" x="575" y="172">并行路径</text>
+  <rect class="blue" x="585" y="220" width="150" height="120" rx="12"/><text class="l" x="620" y="260">多核</text><text class="s" x="603" y="288">独立任务或分块</text>
+  <rect class="blue" x="770" y="220" width="150" height="120" rx="12"/><text class="l" x="810" y="260">SIMD</text><text class="s" x="792" y="288">同一指令多数据</text>
+  <rect class="orange" x="955" y="220" width="150" height="120" rx="12"/><text class="l" x="990" y="260">GPU</text><text class="s" x="971" y="288">大量规则线程</text>
+  <path class="line" d="M660 370V405H1030" marker-end="url(#arrow)"/><text class="s" x="702" y="397">更多同时在途的工作</text>
+  <rect class="green" x="660" y="500" width="480" height="68" rx="12"/><text class="l" x="690" y="529">软件前提：可拆分工作 + 正确数据依赖 + 可控同步</text><text class="s" x="690" y="551">硬件执行单元不会自动把串行程序变快。</text>
+</svg>
