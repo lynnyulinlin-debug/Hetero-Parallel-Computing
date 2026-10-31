@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  phase1-cpu:
+    name: Phase 1 CPU and Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Markdown links
+        run: python3 tests/check_markdown_links.py
+
+      - name: Configure CPU build
+        run: cmake -S . -B build -DHETEROPAR_ENABLE_TESTS=ON
+
+      - name: Build CPU examples
+        run: cmake --build build --parallel
+
+      - name: Run CPU and deployment contract tests
+        run: ctest --test-dir build -L 'cpu|python' --output-on-failure
