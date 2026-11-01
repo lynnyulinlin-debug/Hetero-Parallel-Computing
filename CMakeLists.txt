@@ -4,6 +4,7 @@ project(heteropar_tutorial LANGUAGES C)
 # CMake/CTest 是仓库级入口；各示例目录的 Makefile 只保留为教学快捷入口。
 option(HETEROPAR_BUILD_HOST "构建 CPU / Host 示例" ON)
 option(HETEROPAR_ENABLE_CUDA "构建可选 CUDA 示例与硬件正确性测试" OFF)
+option(HETEROPAR_ENABLE_OPENCL "构建可选 OpenCL 跨平台示例与测试" OFF)
 option(HETEROPAR_BUILD_SIMULATED_DEPLOYMENT "注册 Python 教学部署契约测试" ON)
 option(HETEROPAR_ENABLE_TESTS "启用 CTest 正确性测试" ON)
 option(HETEROPAR_NATIVE_ARCH "启用本机架构优化（-march=native）" OFF)
@@ -22,6 +23,10 @@ find_package(OpenMP REQUIRED)
 if(HETEROPAR_ENABLE_CUDA)
     enable_language(CUDA)
     find_package(CUDAToolkit REQUIRED)
+endif()
+
+if(HETEROPAR_ENABLE_OPENCL)
+    find_package(OpenCL REQUIRED)
 endif()
 
 if(HETEROPAR_BUILD_SIMULATED_DEPLOYMENT)
@@ -58,6 +63,16 @@ function(heteropar_add_cuda_test target)
     endif()
 endfunction()
 
+function(heteropar_add_opencl_test target)
+    if(BUILD_TESTING)
+        add_test(NAME ${target}_opencl_correctness COMMAND $<TARGET_FILE:${target}> 4099)
+        set_tests_properties(${target}_opencl_correctness PROPERTIES
+            LABELS "opencl;correctness;optional"
+            SKIP_REGULAR_EXPRESSION "OPENCL SKIP"
+            TIMEOUT 60)
+    endif()
+endfunction()
+
 # --- Host 控制面：第 4-7 章 -----------------------------------------------
 add_executable(ch04_task_pool
     examples/ch04_task_pool/main.c
@@ -82,6 +97,20 @@ heteropar_apply_c_defaults(ch06_simd_layernorm)
 target_link_libraries(ch06_simd_layernorm PRIVATE heteropar_common OpenMP::OpenMP_C m)
 if(HETEROPAR_NATIVE_ARCH AND CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
     target_compile_options(ch06_simd_layernorm PRIVATE -march=native)
+endif()
+
+if(HETEROPAR_ENABLE_OPENCL)
+    add_executable(ch12_opencl_vec_add
+        examples/ch12_opencl_vec_add/main.c
+        examples/ch12_opencl_vec_add/vec_add_serial.c
+        examples/ch12_opencl_vec_add/vec_add_opencl.c)
+    heteropar_apply_c_defaults(ch12_opencl_vec_add)
+    target_include_directories(ch12_opencl_vec_add PRIVATE examples/ch12_opencl_vec_add)
+    target_compile_definitions(ch12_opencl_vec_add PRIVATE
+        CL_TARGET_OPENCL_VERSION=120
+        HETEROPAR_OPENCL_KERNEL_PATH="${CMAKE_CURRENT_SOURCE_DIR}/examples/ch12_opencl_vec_add/vec_add.cl")
+    target_link_libraries(ch12_opencl_vec_add PRIVATE heteropar_common OpenCL::OpenCL)
+    heteropar_add_opencl_test(ch12_opencl_vec_add)
 endif()
 heteropar_add_cpu_test(ch06_simd_layernorm 17 31)
 
