@@ -44,6 +44,17 @@
 | 对齐 | Alignment | 数据地址与访问宽度满足硬件或编译器偏好的关系。 |
 | 尾部处理 | Tail Handling | 元素数不能整除 lane 数时，对剩余元素的处理。 |
 
+## 编译、ISA 与运行时
+
+| 中文 | 英文 | 本教程中的含义 |
+|---|---|---|
+| 指令集架构 | ISA, Instruction Set Architecture | 编译器与指令执行硬件之间的接口；规定可表达的指令和寄存器语义，不等于某一代微架构的实际性能。 |
+| 应用二进制接口 | ABI, Application Binary Interface | 二进制模块之间关于调用约定、数据布局和链接方式的约定；不同于 ISA。 |
+| 中间表示 | IR, Intermediate Representation | 源代码或模型在被编译为目标工件前使用的中间形式；ONNX 图与编译器内部 IR 都属于这一层。 |
+| PTX | Parallel Thread Execution | CUDA 的虚拟 ISA，可由驱动或工具链进一步生成目标 GPU 的机器代码。 |
+| SASS | NVIDIA GPU machine code | 面向特定 NVIDIA GPU 架构的机器代码；不应视为跨设备稳定接口。 |
+| 图编译器 | Graph Compiler | 将模型图做算子检查、布局/量化优化并生成厂商设备工件的工具链组件。 |
+
 ## GPU 与内存系统
 
 | 中文 | 英文 | 本教程中的含义 |

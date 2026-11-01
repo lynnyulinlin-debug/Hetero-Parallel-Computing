@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">从并行模式到硬件执行的分层</title><desc id="desc">图示并行模式、源代码或模型、编译器或图编译器、ISA或图工件、运行时与微架构之间的关系。</desc>
+  <style>.bg{fill:#f8f7f2}.t{font:700 27px sans-serif;fill:#172033}.h{font:700 18px sans-serif;fill:#172033}.s{font:500 14px sans-serif;fill:#475569}.c{stroke-width:2}.a{fill:#e8eefc;stroke:#2563eb}.b{fill:#fff0df;stroke:#e85d04}.d{fill:#dcf5ed;stroke:#0f766e}.e{fill:#f3e8ff;stroke:#7c3aed}.line{stroke:#475569;stroke-width:3;marker-end:url(#m)}</style>
+  <defs><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs><rect class="bg" width="1200" height="430" rx="24"/><text class="t" x="55" y="58">从并行模式到可观测性能：不要把每一层混为一谈</text>
+  <rect class="a c" x="55" y="120" width="230" height="155" rx="16"/><text class="h" x="80" y="158">模式与源表达</text><text class="s" x="80" y="192">Map / Reduce / 流水线</text><text class="s" x="80" y="220">OpenMP / CUDA / ONNX</text><text class="s" x="80" y="248">回答：工作怎样拆分？</text>
+  <rect class="b c" x="345" y="120" width="230" height="155" rx="16"/><text class="h" x="370" y="158">编译或图编译</text><text class="s" x="370" y="192">优化、合法性、布局选择</text><text class="s" x="370" y="220">回答：如何降到目标接口？</text>
+  <rect class="d c" x="635" y="120" width="230" height="155" rx="16"/><text class="h" x="660" y="158">目标接口</text><text class="s" x="660" y="192">CPU: NEON / AVX</text><text class="s" x="660" y="220">GPU: PTX -> SASS</text><text class="s" x="660" y="248">NPU: 图 IR -> 工件</text>
+  <rect class="e c" x="925" y="120" width="220" height="155" rx="16"/><text class="h" x="950" y="158">运行时与微架构</text><text class="s" x="950" y="192">队列、驱动、寄存器、缓存</text><text class="s" x="950" y="220">回答：实际如何执行？</text><text class="s" x="950" y="248">证据：报告、profile、复测</text>
+  <line class="line" x1="285" y1="197" x2="335" y2="197"/><line class="line" x1="575" y1="197" x2="625" y2="197"/><line class="line" x1="865" y1="197" x2="915" y2="197"/>
+  <text class="s" x="55" y="345">结论：源码或模型只说明意图；是否生成目标路径、实际设备行为和性能结论必须由对应层的证据确认。</text>
+</svg>
