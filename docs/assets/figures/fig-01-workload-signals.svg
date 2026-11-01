@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="410" viewBox="0 0 1200 410" role="img" aria-labelledby="title desc">
+  <title id="title">识别值得并行的工作负载</title><desc id="desc">工作规模、重复计算和相对独立的工作单元共同构成考虑并行化的基本信号。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:16px sans-serif;fill:#475569}.head{font:700 21px sans-serif;fill:#172033}.out{font:700 18px sans-serif;fill:#1e3a5f}</style>
+  <rect width="1200" height="410" fill="#f8fafc"/><text class="title" x="55" y="58">先看三个信号，再考虑并行化</text><text class="sub" x="55" y="88">任意一个信号都不构成结论；三个信号同时出现，才值得继续检查依赖、粒度和数据路径。</text>
+  <rect x="70" y="150" width="220" height="105" rx="16" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/><text class="head" x="100" y="192">工作规模足够大</text><text class="text" x="100" y="225">开销有机会被摊薄</text>
+  <path d="M290 202 H360" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="380" y="150" width="220" height="105" rx="16" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/><text class="head" x="410" y="192">重复计算足够多</text><text class="text" x="410" y="225">可以复用同一类操作</text>
+  <path d="M600 202 H670" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="690" y="150" width="220" height="105" rx="16" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/><text class="head" x="720" y="192">工作单元可拆分</text><text class="text" x="720" y="225">相互依赖较少</text>
+  <path d="M910 202 H980" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="1000" y="150" width="135" height="105" rx="16" fill="#f3e8ff" stroke="#c084fc" stroke-width="2"/><text class="out" x="1022" y="190">继续判断</text><text class="text" x="1022" y="220">依赖与数据</text>
+  <text class="text" x="278" y="335">典型例子：矩阵计算、图像批处理、批量推理、分片数据处理。</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker></defs>
+</svg>

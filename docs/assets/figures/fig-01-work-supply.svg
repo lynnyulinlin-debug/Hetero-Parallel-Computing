@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">可拆分工作如何供给多个执行单元</title>
+  <desc id="desc">串行路径只使用一个执行单元，独立工作单元被拆分后可由多个执行单元同时处理，但共享依赖和过小粒度会降低利用率。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:17px sans-serif;fill:#475569}.head{font:700 21px sans-serif;fill:#172033}.label{font:700 17px sans-serif;fill:#fff}.note{font:700 16px sans-serif;fill:#9a3412}</style>
+  <rect width="1200" height="430" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">执行单元只有得到可拆分工作，才能转化为吞吐</text>
+  <text class="sub" x="55" y="88">左侧是一条串行路径；右侧把独立工作单元分配给多个执行单元。</text>
+  <text class="head" x="95" y="145">串行路径</text><rect x="95" y="175" width="210" height="58" rx="12" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/><text class="text" x="125" y="210">任务 A -> 任务 B -> 任务 C</text><path d="M305 204 H400" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/><rect x="420" y="175" width="145" height="58" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/><text class="head" x="447" y="210">执行单元 1</text><text class="text" x="180" y="275">其余执行单元没有可执行工作</text>
+  <path d="M620 130 V310" stroke="#cbd5e1" stroke-width="2"/>
+  <text class="head" x="690" y="145">拆分后的工作供给</text><rect x="690" y="175" width="105" height="48" rx="12" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/><text class="head" x="720" y="205">任务 1</text><rect x="815" y="175" width="105" height="48" rx="12" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/><text class="head" x="845" y="205">任务 2</text><rect x="940" y="175" width="105" height="48" rx="12" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/><text class="head" x="970" y="205">任务 3</text>
+  <path d="M742 223 V275" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/><path d="M867 223 V275" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/><path d="M992 223 V275" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="682" y="290" width="120" height="52" rx="12" fill="#dcfce7" stroke="#4ade80"/><text class="head" x="700" y="322">执行单元 1</text><rect x="807" y="290" width="120" height="52" rx="12" fill="#dcfce7" stroke="#4ade80"/><text class="head" x="825" y="322">执行单元 2</text><rect x="932" y="290" width="120" height="52" rx="12" fill="#dcfce7" stroke="#4ade80"/><text class="head" x="950" y="322">执行单元 3</text>
+  <rect x="250" y="365" width="700" height="38" rx="10" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/><text class="note" x="310" y="390">检查：任务是否独立？粒度能否覆盖调度成本？共享依赖是否会迫使等待？</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker></defs>
+</svg>

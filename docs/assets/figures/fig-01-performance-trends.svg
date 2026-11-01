@@ -4,7 +4,7 @@
   <style>
     .bg{fill:#f8f7f2}.panel{fill:#fff;stroke:#d6d3c7;stroke-width:2}.t{font:700 28px sans-serif;fill:#172033}.l{font:700 19px sans-serif;fill:#172033}.s{font:500 15px sans-serif;fill:#475569}.line{stroke:#64748b;stroke-width:3;fill:none}.blue{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.orange{fill:#fff0df;stroke:#e85d04;stroke-width:2}.green{fill:#dcf5ed;stroke:#0f766e;stroke-width:2}.warn{fill:#fee2e2;stroke:#dc2626;stroke-width:2}.accent{stroke:#e85d04;stroke-width:5;fill:none}
   </style>
-  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L0 7L7 3.5Z" fill="#475569"/></marker></defs>
   <rect class="bg" width="1200" height="620" rx="24"/>
   <text class="t" x="55" y="60">性能增长的重心：从更高主频转向更多可并行工作</text>
   <text class="s" x="55" y="88">这是机制示意，不表示某一代芯片的实际频率、核数或性能数据。</text>
