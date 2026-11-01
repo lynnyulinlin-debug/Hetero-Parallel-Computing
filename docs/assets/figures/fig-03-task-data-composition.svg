@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">任务并行与数据并行的组合</title><desc id="desc">视频处理等系统在外层按阶段组织任务，在单个推理阶段内部按数据块并行处理。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:16px sans-serif;fill:#475569}.head{font:700 21px sans-serif;fill:#172033}.note{font:700 17px sans-serif;fill:#1e3a5f}</style>
+  <rect width="1200" height="440" fill="#f8fafc"/><text class="title" x="55" y="58">外层按阶段协同，内层按数据并行处理</text><text class="sub" x="55" y="88">同一个系统可以同时使用任务并行和数据并行，两者解决的不是同一个问题。</text>
+  <text class="note" x="55" y="140">任务并行：不同阶段可以并发推进</text>
+  <rect x="55" y="165" width="190" height="75" rx="14" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/><text class="head" x="105" y="208">采集</text><path d="M245 202h55" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="320" y="145" width="350" height="115" rx="16" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/><text class="head" x="450" y="184">推理阶段</text><text class="text" x="418" y="222">内部可继续做数据并行</text><path d="M670 202h55" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="745" y="165" width="190" height="75" rx="14" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/><text class="head" x="785" y="208">后处理</text>
+  <text class="note" x="55" y="315">数据并行：同一操作作用于多个数据块</text>
+  <rect x="365" y="330" width="60" height="45" rx="8" fill="#bbf7d0"/><rect x="465" y="330" width="60" height="45" rx="8" fill="#bbf7d0"/><rect x="565" y="330" width="60" height="45" rx="8" fill="#bbf7d0"/><text class="text" x="337" y="405">同一推理操作分别处理批内数据块</text>
+  <path d="M395 260 V315 M495 260 V315 M595 260 V315" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow)"/>
+  <text class="text" x="760" y="355">阶段之间看依赖与队列；</text><text class="text" x="760" y="380">阶段内部看数据布局与规模。</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker></defs>
+</svg>
