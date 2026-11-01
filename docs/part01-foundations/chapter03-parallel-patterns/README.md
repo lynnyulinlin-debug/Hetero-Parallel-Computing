@@ -24,4 +24,4 @@
 
 ## 配套实践
 
-- 在前两章的[视频分析流水线工作底稿](../workload-dossier.md#3-模式与候选)上，补充阶段依赖、帧内数据切分、吞吐/延迟目标、候选执行位置和验证证据；产出模式选择部分，列出同步点、主要约束和复测证据。[`ch09_vec_add`](../../../examples/ch09_vec_add/README.md) 和 [`ch14_attention_pipeline`](../../../examples/ch14_attention_pipeline/README.md) 只用于迁移对照。
+- 在前两章的[视频分析流水线工作负载记录卡](../../learning-tools/workload-record-card.md#3-模式与候选)上，补充阶段依赖、帧内数据切分、吞吐/延迟目标、候选执行位置和验证证据；产出模式选择部分，列出同步点、主要约束和复测证据。[`ch09_vec_add`](../../../examples/ch09_vec_add/README.md) 和 [`ch14_attention_pipeline`](../../../examples/ch14_attention_pipeline/README.md) 只用于迁移对照。
