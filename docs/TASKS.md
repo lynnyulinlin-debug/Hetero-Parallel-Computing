@@ -90,8 +90,8 @@
 
 | 项目 | 内容 |
 |---|---|
-| 阅读 | 第1-3章：动机与上限、并发基础、并行模式 |
-| 实验 | 运行 `examples/ch09_vec_add` 的 CPU 路径；修改输入规模并保留输出 |
+| 阅读 | 按[Task 1 最小阅读清单](phase1/task-record-guide.md#最小阅读清单)完成第 1-3 章所需小节；不要求通读第 2 章的发布顺序与失败路径 |
+| 实验 | 按[Task 1 验收命令](phase1/README.md#task-1并行问题模型)复用 Task 0 的 `build/` 运行 [`ch09_vec_add`](../examples/ch09_vec_add/README.md) 的 CPU 路径，并保留三组控制变量输出 |
 | 重点 | Amdahl 上限、Map/Reduce、数据并行/任务并行、吞吐/延迟 |
 | 产出 | 为一个自选负载写出：并行单元、共享数据、同步点和可能瓶颈 |
 
