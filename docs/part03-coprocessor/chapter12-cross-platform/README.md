@@ -15,12 +15,13 @@
 
 - [12.1 OpenCL：开放异构计算标准](./01-opencl-standard.md)
 - [12.2 OpenCL Host 端运行时 API 流程](./02-opencl-host-runtime.md)
-- [12.3 一个最小流程示意](./03-minimal-flow.md)
+- [12.3 最小可运行 OpenCL `vec_add`](./03-minimal-flow.md)
 - [12.4 SYCL：C++ 模板化的异构编程](./04-sycl.md)
 - [12.5-12.6 与 CUDA 的对比和选型建议](./05-comparison-selection.md)
 
 ## 最小练习
 
+- [ch12_opencl_vec_add](../../../examples/ch12_opencl_vec_add/README.md)：选择 platform/device、创建 buffer、提交 kernel、读回并校验结果。
 - 以一个现有算子或模型为对象，列出必须复用的代码边界与各后端仍需维护的构建、测试和性能差异。
 
 ## 完成产出

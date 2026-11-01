@@ -29,6 +29,12 @@
 | [ch14_face_detection](./ch14_face_detection/README.md) | 第14章 / 第15章 | 端到端流水线 | 实时视频流人脸检测，适合看阶段边界、队列和后端切换 |
 | [ch14_attention_pipeline](./ch14_attention_pipeline/README.md) | 第14章 / 第15章 | 注意力流水线实验 | 看 QK^T、softmax、PV 如何被组织进一个教学型流水线 |
 
+## 跨平台选读实验
+
+| 示例 | 对应章节 | 角色 | 说明 |
+|---|---|---|---|
+| [ch12_opencl_vec_add](./ch12_opencl_vec_add/README.md) | 第12章 | OpenCL 最小闭环 | 只在多后端需求明确时，观察 platform/device、buffer、kernel 与结果回读 |
+
 ## 章节 -> 项目 -> 作用
 
 | 章节 | 项目 | 作用 |
