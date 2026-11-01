@@ -1,33 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
-  <title id="title">并行计算的系统基础学习路径</title>
-  <desc id="desc">第1章说明性能收益和上限，第2章说明共享状态的正确性，第3章说明任务与数据模式如何映射到后续硬件与系统选择。</desc>
-  <style>
-    .bg{fill:#f8f7f2}.title{font:700 28px sans-serif;fill:#172033}.head{font:700 20px sans-serif;fill:#172033}.txt{font:500 15px sans-serif;fill:#475569}.card{stroke-width:2}.c1{fill:#e8eefc;stroke:#2563eb}.c2{fill:#fff0df;stroke:#e85d04}.c3{fill:#dcf5ed;stroke:#0f766e}.out{fill:#f3e8ff;stroke:#7c3aed}.arrow{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#a)}
-  </style>
-  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs>
-  <rect class="bg" width="1200" height="560" rx="24"/>
-  <text class="title" x="55" y="62">第一篇：为后续异构并行建立三层共同语言</text>
-  <text class="txt" x="55" y="90">先判断是否值得并行，再保证共享执行正确，最后把负载描述为可映射的模式。</text>
-  <rect class="c1 card" x="55" y="155" width="320" height="220" rx="18"/>
-  <text class="head" x="85" y="198">第1章：性能约束</text>
-  <text class="txt" x="85" y="235">单核放缓、Amdahl/Gustafson</text>
-  <text class="txt" x="85" y="265">问题：值得并行吗？</text>
-  <text class="txt" x="85" y="295">证据：串行比例、粒度、数据路径</text>
-  <text class="txt" x="85" y="335">输出：并行化判断卡</text>
-  <rect class="c2 card" x="440" y="155" width="320" height="220" rx="18"/>
-  <text class="head" x="470" y="198">第2章：并发正确性</text>
-  <text class="txt" x="470" y="235">线程、队列、同步、可见性、退出</text>
-  <text class="txt" x="470" y="265">问题：共享状态何时安全？</text>
-  <text class="txt" x="470" y="295">证据：所有权、等待条件、发布顺序</text>
-  <text class="txt" x="470" y="335">输出：任务队列时序图</text>
-  <rect class="c3 card" x="825" y="155" width="320" height="220" rx="18"/>
-  <text class="head" x="855" y="198">第3章：负载模式</text>
-  <text class="txt" x="855" y="235">数据并行、任务并行、流水线</text>
-  <text class="txt" x="855" y="265">问题：怎样拆分和衡量目标？</text>
-  <text class="txt" x="855" y="295">证据：依赖、吞吐/延迟、映射约束</text>
-  <text class="txt" x="855" y="335">输出：模式选择记录卡</text>
-  <path class="arrow" d="M375 265H430"/><path class="arrow" d="M760 265H815"/>
-  <rect class="out card" x="250" y="440" width="700" height="65" rx="16"/>
-  <text class="head" x="280" y="480">进入第二篇：把任务、循环和数据放到 Host 控制面中实现与验证</text>
-  <path class="arrow" d="M600 375V430"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">第一篇学习路径</title><desc id="desc">第一篇依次建立并行收益、并发正确性和负载模式三个判断层次。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:16px sans-serif;fill:#475569}.head{font:700 22px sans-serif;fill:#172033}.out{font:700 17px sans-serif;fill:#1e3a5f}</style>
+  <rect width="1200" height="430" fill="#f8fafc"/><text class="title" x="55" y="58">第一篇：按“是否值得、是否正确、怎样拆分”建立基础</text><text class="sub" x="55" y="88">每一章只交付一个可复查的判断产物，下一篇再把它们变成 Host 代码。</text>
+  <rect x="55" y="145" width="300" height="165" rx="16" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/><text class="head" x="85" y="190">第1章：性能约束</text><text class="text" x="85" y="225">问题：值得并行吗？</text><text class="out" x="85" y="270">产出：并行化判断卡</text>
+  <path d="M355 228 H435" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="455" y="145" width="300" height="165" rx="16" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/><text class="head" x="485" y="190">第2章：并发正确性</text><text class="text" x="485" y="225">问题：共享状态安全吗？</text><text class="out" x="485" y="270">产出：队列时序图</text>
+  <path d="M755 228 H835" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="855" y="145" width="290" height="165" rx="16" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/><text class="head" x="885" y="190">第3章：负载模式</text><text class="text" x="885" y="225">问题：工作怎样拆分？</text><text class="out" x="885" y="270">产出：模式选择记录卡</text>
+  <text class="text" x="350" y="375">下一步：第4-7章把任务、循环和数据放到 Host 控制面中实现与验证。</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#64748b"/></marker></defs>
 </svg>
