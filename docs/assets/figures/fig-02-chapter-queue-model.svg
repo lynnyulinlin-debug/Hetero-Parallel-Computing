@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-labelledby="title desc">
+  <title id="title">共享任务队列的核心模型</title>
+  <desc id="desc">同一进程内的生产者和消费者通过共享任务队列协作，队列状态由锁和条件变量保护，任务数据经过发布后被消费者读取，关闭后排空已有任务。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:17px sans-serif;fill:#475569}.head{font:700 21px sans-serif;fill:#172033}.label{font:700 16px sans-serif;fill:#fff}.note{font:700 16px sans-serif;fill:#1e3a5f}</style>
+  <rect width="1200" height="460" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">共享任务队列：状态、数据和退出规则必须同时成立</text>
+  <text class="sub" x="55" y="88">进程边界决定共享范围；队列状态决定等待；发布顺序决定数据何时可读。</text>
+  <rect x="55" y="135" width="1090" height="220" rx="20" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8 7"/>
+  <text class="note" x="82" y="165">同一进程：线程共享地址空间</text>
+  <rect x="95" y="205" width="200" height="95" rx="15" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/><text class="head" x="135" y="245">生产者线程</text><text class="text" x="122" y="275">写入任务数据</text>
+  <path d="M295 252 H365" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="365" y="180" width="350" height="150" rx="17" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/><text class="head" x="472" y="220">共享任务队列</text><text class="text" x="405" y="255">状态：count、capacity、closed</text><text class="text" x="405" y="285">锁：共同保护状态</text><text class="text" x="405" y="315">条件变量：空 / 满时等待</text>
+  <path d="M715 252 H785" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="785" y="205" width="200" height="95" rx="15" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/><text class="head" x="825" y="245">消费者线程</text><text class="text" x="812" y="275">取走并处理任务</text>
+  <path d="M455 330 V385" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#data)"/>
+  <path d="M635 330 V360 H880 V385" stroke="#dc2626" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#exit)"/>
+  <rect x="120" y="385" width="400" height="45" rx="12" fill="#f3e8ff" stroke="#c084fc" stroke-width="2"/><text class="note" x="150" y="414">数据：写完任务 -> 发布 ready -> 消费者读取</text>
+  <rect x="680" y="385" width="400" height="45" rx="12" fill="#fee2e2" stroke="#f87171" stroke-width="2"/><text class="note" x="715" y="414">退出：closed 后排空；队空时工作线程退出</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker><marker id="data" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#8b5cf6"/></marker><marker id="exit" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#dc2626"/></marker></defs>
+</svg>

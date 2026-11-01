@@ -1,1 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 440" role="img" aria-label="Process and thread boundaries"><style>.bg{fill:#f8f7f2}.p{fill:#fff;stroke:#d6d3c7;stroke-width:2}.b{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.o{fill:#fff0df;stroke:#e85d04;stroke-width:2}.t{font-family:Arial,sans-serif;fill:#172033}.h{font-size:28px;font-weight:700}.l{font-size:18px;font-weight:700}.s{font-size:14px;fill:#475569}</style><rect class="bg" width="1100" height="440" rx="24"/><text class="t h" x="45" y="55">Process and Thread: Resource Boundaries</text><rect class="p" x="50" y="100" width="450" height="280" rx="16"/><text class="t l" x="80" y="140">Two processes</text><rect class="b" x="85" y="180" width="155" height="145" rx="10"/><rect class="b" x="300" y="180" width="155" height="145" rx="10"/><text class="t l" x="112" y="215">Process A</text><text class="t s" x="105" y="245">own address space</text><text class="t s" x="105" y="270">own resources</text><text class="t l" x="327" y="215">Process B</text><text class="t s" x="320" y="245">own address space</text><text class="t s" x="320" y="270">own resources</text><text class="t s" x="80" y="355">Isolation is strong; communication needs an explicit boundary.</text><rect class="p" x="600" y="100" width="450" height="280" rx="16"/><text class="t l" x="630" y="140">One process, multiple threads</text><rect class="o" x="635" y="175" width="380" height="145" rx="10"/><rect class="b" x="665" y="210" width="75" height="70" rx="8"/><rect class="b" x="785" y="210" width="75" height="70" rx="8"/><rect class="b" x="905" y="210" width="75" height="70" rx="8"/><text class="t s" x="680" y="248">T0</text><text class="t s" x="800" y="248">T1</text><text class="t s" x="920" y="248">T2</text><text class="t s" x="650" y="300">shared address space and resources</text><text class="t s" x="630" y="355">Sharing is cheap; visibility and synchronization become necessary.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">进程与线程的资源边界</title>
+  <desc id="desc">左侧是两个隔离进程，右侧是一个进程内的多个共享线程。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:17px sans-serif;fill:#475569}.head{font:700 22px sans-serif;fill:#172033}.label{font:700 18px sans-serif;fill:#fff}</style>
+  <rect width="1200" height="480" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">进程先划分资源边界，线程在边界内并发执行</text>
+  <text class="sub" x="55" y="88">先决定隔离还是共享，再决定如何同步。</text>
+  <text class="head" x="80" y="145">两个进程：资源隔离</text>
+  <rect x="80" y="175" width="210" height="170" rx="16" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="105" y="200" width="160" height="38" rx="10" fill="#2563eb"/><text class="label" x="145" y="226">进程甲</text>
+  <text class="text" x="110" y="275">独立地址空间</text><text class="text" x="110" y="310">独立资源</text>
+  <rect x="350" y="175" width="210" height="170" rx="16" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="375" y="200" width="160" height="38" rx="10" fill="#2563eb"/><text class="label" x="415" y="226">进程乙</text>
+  <text class="text" x="380" y="275">独立地址空间</text><text class="text" x="380" y="310">独立资源</text>
+  <path d="M290 260 H350" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 8"/>
+  <text class="text" x="155" y="395">隔离更强，通信需跨越边界</text>
+  <path d="M615 125 V405" stroke="#cbd5e1" stroke-width="2"/>
+  <text class="head" x="675" y="145">一个进程：线程共享资源</text>
+  <rect x="675" y="175" width="440" height="170" rx="16" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/>
+  <rect x="700" y="200" width="390" height="42" rx="10" fill="#16a34a"/><text class="label" x="810" y="227">共享地址空间与资源</text>
+  <rect x="725" y="275" width="82" height="40" rx="10" fill="#dcfce7" stroke="#4ade80"/><text class="head" x="746" y="302">线程 1</text>
+  <rect x="855" y="275" width="82" height="40" rx="10" fill="#dcfce7" stroke="#4ade80"/><text class="head" x="876" y="302">线程 2</text>
+  <rect x="985" y="275" width="82" height="40" rx="10" fill="#dcfce7" stroke="#4ade80"/><text class="head" x="1006" y="302">线程 3</text>
+  <text class="text" x="710" y="395">共享成本低，但必须明确可见性与同步</text>
+</svg>

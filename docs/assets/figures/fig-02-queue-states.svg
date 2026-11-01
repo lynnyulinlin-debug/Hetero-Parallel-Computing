@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">有界任务队列的任务数量与关闭标记</title>
+  <desc id="desc">任务数量决定提交和取走是否等待，关闭标记独立于任务数量，关闭后消费者继续排空已有任务。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:17px sans-serif;fill:#475569}.head{font:700 22px sans-serif;fill:#172033}.tag{font:700 16px sans-serif;fill:#475569}.note{font:700 18px sans-serif;fill:#9a3412}</style>
+  <rect width="1200" height="480" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">有界任务队列：任务数量与关闭标记共同决定动作</text>
+  <text class="sub" x="55" y="88">任务数量决定是否等待；关闭标记决定能否继续提交以及何时退出。</text>
+  <rect x="60" y="165" width="215" height="115" rx="16" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <text class="head" x="105" y="210">任务数量为 0</text><text class="text" x="93" y="245">消费者等待或退出</text>
+  <rect x="380" y="165" width="215" height="115" rx="16" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/>
+  <text class="head" x="423" y="210">数量在中间</text><text class="text" x="420" y="245">可提交、可取走</text>
+  <rect x="700" y="165" width="215" height="115" rx="16" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text class="head" x="753" y="210">任务数量已满</text><text class="text" x="735" y="245">生产者等待位置</text>
+  <path d="M275 205 H380" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/><text class="tag" x="300" y="185">提交</text>
+  <path d="M595 205 H700" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/><text class="tag" x="620" y="185">提交</text>
+  <path d="M700 250 H595" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/><text class="tag" x="630" y="275">取走</text>
+  <path d="M380 250 H275" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/><text class="tag" x="310" y="275">取走</text>
+  <rect x="155" y="345" width="890" height="85" rx="15" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+  <text class="note" x="190" y="380">独立标记：closed = true，可在任意任务数量下设置</text>
+  <text class="text" x="190" y="412">停止新提交；count &gt; 0 时消费者继续取走；只有 closed &amp;&amp; count == 0 时消费者退出。</text>
+  <path d="M487 280 V345" stroke="#dc2626" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#close)"/><text x="505" y="320" font-family="sans-serif" font-size="16" font-weight="700" fill="#b91c1c">设置关闭标记</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker><marker id="close" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#dc2626"/></marker></defs>
+</svg>

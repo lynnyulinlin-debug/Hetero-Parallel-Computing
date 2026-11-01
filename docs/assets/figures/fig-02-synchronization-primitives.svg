@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">队列协作的两类主问题与一个补充规则</title>
+  <desc id="desc">共享队列的状态修改使用互斥锁，等待条件使用条件变量，独立状态可使用原子更新。</desc>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #172033; }
+    .sub { font: 16px sans-serif; fill: #526070; }
+    .node-title { font: 700 22px sans-serif; fill: #172033; }
+    .node-text { font: 17px sans-serif; fill: #334155; }
+    .tag { font: 700 15px sans-serif; fill: #ffffff; }
+    .note { font: 16px sans-serif; fill: #526070; }
+  </style>
+  <rect width="1200" height="470" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">队列协作：两类主问题与一个补充规则</text>
+  <text class="sub" x="55" y="88">互斥锁和条件变量组织队列协作；原子操作只更新不参与队列状态转换的独立值。</text>
+  <rect x="55" y="140" width="250" height="92" rx="14" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text class="node-title" x="82" y="180">谁能修改队列？</text>
+  <text class="node-text" x="82" y="210">保护队头、队尾和任务数</text>
+  <path d="M305 186 H400" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="400" y="140" width="250" height="92" rx="14" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="420" y="155" width="58" height="26" rx="13" fill="#2563eb"/>
+  <text class="tag" x="434" y="174">工具</text>
+  <text class="node-title" x="420" y="207">互斥锁</text>
+  <path d="M650 186 H750" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="750" y="140" width="395" height="92" rx="14" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/>
+  <text class="node-title" x="778" y="180">同一时刻只允许一个修改者</text>
+  <text class="node-text" x="778" y="210">修改完成后，其他线程才可进入临界区</text>
+  <rect x="55" y="280" width="250" height="92" rx="14" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text class="node-title" x="82" y="320">何时可以继续？</text>
+  <text class="node-text" x="82" y="350">队列空或满时怎么办</text>
+  <path d="M305 326 H400" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="400" y="280" width="250" height="92" rx="14" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <rect x="420" y="295" width="58" height="26" rx="13" fill="#2563eb"/>
+  <text class="tag" x="434" y="314">工具</text>
+  <text class="node-title" x="420" y="347">条件变量</text>
+  <path d="M650 326 H750" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="750" y="280" width="395" height="92" rx="14" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/>
+  <text class="node-title" x="778" y="320">条件不满足就等待</text>
+  <text class="node-text" x="778" y="350">状态更新后唤醒并重新检查</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#94a3b8"/></marker></defs>
+  <text class="note" x="55" y="425">补充规则：独立完成计数可用原子更新；队头、队尾、任务数量和关闭状态仍由同一把锁保护。</text>
+</svg>

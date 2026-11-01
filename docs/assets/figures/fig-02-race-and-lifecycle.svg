@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">共享状态的竞态与线程生命周期</title>
+  <desc id="desc">主线程创建两个工作线程后等待汇合。两个线程同时读取旧计数并写回会导致计数丢失更新。</desc>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #172033; }
+    .sub { font: 17px sans-serif; fill: #475569; }
+    .head { font: 700 20px sans-serif; fill: #172033; }
+    .text { font: 16px sans-serif; fill: #334155; }
+    .tag { font: 700 16px sans-serif; fill: #ffffff; }
+  </style>
+  <rect width="1200" height="470" fill="#f8fafc"/>
+  <text class="title" x="55" y="56">线程生命周期不等于共享状态正确</text>
+  <text class="sub" x="55" y="86">创建和汇合规定线程何时开始、何时结束；共享状态仍需要同步规则。</text>
+
+  <rect x="55" y="125" width="170" height="58" rx="12" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <text class="head" x="90" y="160">主线程创建</text>
+  <path d="M225 154 H300" fill="none" stroke="#64748b" stroke-width="3"/>
+  <path d="M290 146 L300 154 L290 162" fill="none" stroke="#64748b" stroke-width="3"/>
+  <rect x="300" y="125" width="170" height="58" rx="12" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/>
+  <text class="head" x="337" y="160">工作线程执行</text>
+  <path d="M470 154 H545" fill="none" stroke="#64748b" stroke-width="3"/>
+  <path d="M535 146 L545 154 L535 162" fill="none" stroke="#64748b" stroke-width="3"/>
+  <rect x="545" y="125" width="170" height="58" rx="12" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text class="head" x="587" y="160">主线程 join</text>
+  <text class="text" x="740" y="160">生命周期：创建 -> 执行 -> 汇合</text>
+
+  <rect x="55" y="245" width="245" height="150" rx="14" fill="#fef2f2" stroke="#f87171" stroke-width="2"/>
+  <rect x="75" y="263" width="78" height="26" rx="13" fill="#dc2626"/>
+  <text class="tag" x="92" y="282">共享</text>
+  <text class="head" x="75" y="325">count = 0</text>
+  <text class="text" x="75" y="358">目标：两个线程各加一</text>
+  <path d="M300 320 H370" fill="none" stroke="#64748b" stroke-width="3"/>
+  <path d="M360 312 L370 320 L360 328" fill="none" stroke="#64748b" stroke-width="3"/>
+  <rect x="370" y="230" width="270" height="75" rx="14" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <text class="head" x="395" y="263">线程 A：读 0 -> 写 1</text>
+  <text class="text" x="395" y="289">看到的是旧状态</text>
+  <rect x="370" y="335" width="270" height="75" rx="14" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <text class="head" x="395" y="368">线程 B：读 0 -> 写 1</text>
+  <text class="text" x="395" y="394">看到的是同一旧状态</text>
+  <path d="M640 267 H710 V320 H785" fill="none" stroke="#64748b" stroke-width="3"/>
+  <path d="M640 372 H710 V320 H785" fill="none" stroke="#64748b" stroke-width="3"/>
+  <path d="M775 312 L785 320 L775 328" fill="none" stroke="#64748b" stroke-width="3"/>
+  <rect x="785" y="277" width="330" height="86" rx="14" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text class="head" x="816" y="313">最终 count 仍为 1</text>
+  <text class="text" x="816" y="341">两次更新发生覆盖，结果取决于交错顺序</text>
+</svg>

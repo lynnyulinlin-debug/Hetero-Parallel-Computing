@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="Deadlock cycle"><style>.bg{fill:#f8f7f2}.b{fill:#e0ecff;stroke:#2563eb;stroke-width:2}.o{fill:#fff0df;stroke:#e85d04;stroke-width:2}.t{font-family:Arial,sans-serif;fill:#172033}.h{font-size:28px;font-weight:700}.l{font-size:18px;font-weight:700}.s{font-size:14px;fill:#475569}.a{stroke:#475569;stroke-width:3;fill:none;marker-end:url(#x)}</style><defs><marker id="x" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L0 6L9 3Z" fill="#475569"/></marker></defs><rect class="bg" width="800" height="480" rx="24"/><text class="t h" x="45" y="55">Deadlock: A Circular Wait</text><rect class="b" x="110" y="150" width="150" height="70" rx="12"/><text class="t l" x="150" y="193">Thread A</text><rect class="o" x="540" y="150" width="150" height="70" rx="12"/><text class="t l" x="580" y="193">Lock 2</text><rect class="b" x="110" y="300" width="150" height="70" rx="12"/><text class="t l" x="150" y="343">Thread B</text><rect class="o" x="540" y="300" width="150" height="70" rx="12"/><text class="t l" x="580" y="343">Lock 1</text><path class="a" d="M260 185H525"/><path class="a" d="M615 220V285"/><path class="a" d="M540 335H275"/><path class="a" d="M185 300V235"/><text class="t s" x="320" y="165">A waits for Lock 2</text><text class="t s" x="320" y="360">B waits for Lock 1</text><text class="t s" x="45" y="430">Break the cycle with a consistent lock order, bounded try-lock, or redesigned ownership.</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="470" viewBox="0 0 1200 470" role="img" aria-labelledby="title desc">
+  <title id="title">死锁中的循环等待</title><desc id="desc">线程 A 和线程 B 分别持有一把锁并等待对方持有的锁，依赖构成闭环。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:17px sans-serif;fill:#475569}.head{font:700 22px sans-serif;fill:#172033}.warn{font:700 19px sans-serif;fill:#9a3412}</style>
+  <rect width="1200" height="470" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">死锁：每个线程都在等待另一个线程释放资源</text>
+  <text class="sub" x="55" y="88">四条依赖首尾相连时，系统没有任何一个参与者能继续推进。</text>
+  <rect x="130" y="165" width="180" height="70" rx="14" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/><text class="head" x="182" y="208">线程甲</text>
+  <rect x="890" y="165" width="180" height="70" rx="14" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/><text class="head" x="942" y="208">线程乙</text>
+  <rect x="130" y="315" width="180" height="70" rx="14" fill="#fee2e2" stroke="#f87171" stroke-width="2"/><text class="head" x="182" y="358">锁 1</text>
+  <rect x="890" y="315" width="180" height="70" rx="14" fill="#fee2e2" stroke="#f87171" stroke-width="2"/><text class="head" x="942" y="358">锁 2</text>
+  <path d="M220 235 V315" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow)"/><text class="text" x="235" y="280">甲持有</text>
+  <path d="M310 200 H890" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow)"/><text class="text" x="510" y="185">甲等待锁 2</text>
+  <path d="M980 235 V315" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow)"/><text class="text" x="995" y="280">乙持有</text>
+  <path d="M890 350 H310" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow)"/><text class="text" x="510" y="375">乙等待锁 1</text>
+  <rect x="315" y="410" width="570" height="38" rx="10" fill="#fff7ed"/><text class="warn" x="388" y="436">破环方法：所有线程按同一顺序获取多把锁</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker></defs>
+</svg>

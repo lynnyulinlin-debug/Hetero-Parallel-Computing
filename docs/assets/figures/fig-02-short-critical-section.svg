@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">锁内取任务，锁外并行计算</title>
+  <desc id="desc">两个工作线程依次在锁内取得任务，然后在锁外重叠执行计算。</desc>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #172033; }
+    .sub, .text { font: 16px sans-serif; fill: #475569; }
+    .lane { font: 700 20px sans-serif; fill: #172033; }
+    .node { font: 700 17px sans-serif; fill: #172033; }
+    .note { font: 700 17px sans-serif; fill: #1e3a5f; }
+  </style>
+  <rect width="1200" height="430" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">锁只保护队列状态，计算在锁外推进</text>
+  <text class="sub" x="55" y="88">时间从左向右。两个线程依次取得任务，随后可在锁外同时计算。</text>
+  <text class="lane" x="70" y="175">工作线程甲</text>
+  <path d="M220 165 H1120" stroke="#cbd5e1" stroke-width="3"/>
+  <rect x="250" y="130" width="105" height="70" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text class="node" x="278" y="172">加锁</text>
+  <path d="M355 165 H405" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="405" y="130" width="130" height="70" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text class="node" x="427" y="172">取任务 A</text>
+  <path d="M535 165 H585" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="585" y="130" width="105" height="70" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text class="node" x="612" y="172">解锁</text>
+  <path d="M690 165 H740" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="740" y="130" width="410" height="70" rx="12" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text class="node" x="895" y="172">计算任务 A</text>
+  <text class="lane" x="70" y="310">工作线程乙</text>
+  <path d="M220 300 H1120" stroke="#cbd5e1" stroke-width="3"/>
+  <rect x="710" y="265" width="70" height="70" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text class="node" x="722" y="307">加锁</text>
+  <path d="M780 300 H820" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="820" y="265" width="110" height="70" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text class="node" x="832" y="307">取任务 B</text>
+  <path d="M930 300 H970" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="970" y="265" width="70" height="70" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+  <text class="node" x="982" y="307">解锁</text>
+  <path d="M1040 300 H1080" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="1080" y="265" width="75" height="70" rx="12" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+  <text class="node" x="1087" y="307">计算 B</text>
+  <rect x="300" y="370" width="610" height="38" rx="10" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text class="note" x="340" y="395">蓝色：锁内更新队列状态；绿色：锁外执行任务，可与其他线程重叠。</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker></defs>
+</svg>

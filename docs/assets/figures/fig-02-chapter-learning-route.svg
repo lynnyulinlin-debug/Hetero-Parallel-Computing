@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="410" viewBox="0 0 1200 410" role="img" aria-labelledby="title desc">
+  <title id="title">第 2 章学习路线</title>
+  <desc id="desc">从进程线程边界开始，依次学习同步原语、任务队列协议、发布顺序和推进检查，最终完成任务队列设计卡。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:16px sans-serif;fill:#475569}.head{font:700 20px sans-serif;fill:#172033}.step{font:700 15px sans-serif;fill:#fff}.out{font:700 18px sans-serif;fill:#1e3a5f}</style>
+  <rect width="1200" height="410" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">第 2 章：从共享边界到持续推进</text>
+  <text class="sub" x="55" y="88">按顺序建立任务队列设计所需的五类判断。</text>
+  <rect x="45" y="150" width="185" height="105" rx="15" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/><circle cx="73" cy="178" r="16" fill="#2563eb"/><text class="step" x="68" y="183">1</text><text class="head" x="98" y="185">共享边界</text><text class="text" x="70" y="220">进程还是线程</text>
+  <path d="M230 202 H270" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="270" y="150" width="185" height="105" rx="15" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/><circle cx="298" cy="178" r="16" fill="#16a34a"/><text class="step" x="293" y="183">2</text><text class="head" x="323" y="185">同步职责</text><text class="text" x="295" y="220">锁、等待、原子</text>
+  <path d="M455 202 H495" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="495" y="150" width="185" height="105" rx="15" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/><circle cx="523" cy="178" r="16" fill="#ea580c"/><text class="step" x="518" y="183">3</text><text class="head" x="548" y="185">队列协议</text><text class="text" x="520" y="220">提交、排空、退出</text>
+  <path d="M680 202 H720" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="720" y="150" width="185" height="105" rx="15" fill="#f3e8ff" stroke="#c084fc" stroke-width="2"/><circle cx="748" cy="178" r="16" fill="#8b5cf6"/><text class="step" x="743" y="183">4</text><text class="head" x="773" y="185">数据发布</text><text class="text" x="745" y="220">数据何时可读</text>
+  <path d="M905 202 H945" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="945" y="150" width="210" height="105" rx="15" fill="#fef2f2" stroke="#f87171" stroke-width="2"/><circle cx="973" cy="178" r="16" fill="#dc2626"/><text class="step" x="968" y="183">5</text><text class="head" x="998" y="185">持续推进</text><text class="text" x="970" y="220">死锁、活锁检查</text>
+  <path d="M600 255 V310" stroke="#1e3a5f" stroke-width="3" marker-end="url(#out)"/>
+  <rect x="390" y="310" width="420" height="55" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/><text class="out" x="480" y="345">产出：可审查的任务队列设计卡</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#64748b"/></marker><marker id="out" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#1e3a5f"/></marker></defs>
+</svg>

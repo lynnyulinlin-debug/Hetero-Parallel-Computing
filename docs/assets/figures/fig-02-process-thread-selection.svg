@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">进程、线程与组合结构的选择卡</title>
+  <desc id="desc">按隔离需求和中间数据共享频率选择进程、线程或进程加线程的组合结构。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:17px sans-serif;fill:#475569}.card{font:700 19px sans-serif;fill:#172033}.small{font:16px sans-serif;fill:#475569}</style>
+  <rect width="1200" height="440" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">选择并发单元：先看隔离需求，再看数据交换</text>
+  <text class="sub" x="55" y="88">同一系统可以同时使用进程边界和进程内线程。</text>
+  <rect x="55" y="135" width="320" height="200" rx="16" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/>
+  <text class="card" x="85" y="180">需要独立故障或权限边界</text><text class="small" x="85" y="215">任务互不信任，或需要独立重启</text>
+  <rect x="85" y="255" width="130" height="46" rx="12" fill="#2563eb"/><text x="120" y="285" font-family="sans-serif" font-size="19" font-weight="700" fill="#fff">选进程</text>
+  <rect x="440" y="135" width="320" height="200" rx="16" fill="#f0fdf4" stroke="#4ade80" stroke-width="2"/>
+  <text class="card" x="470" y="180">频繁交换同一批中间结果</text><text class="small" x="470" y="215">共享规则清楚，能管理同步责任</text>
+  <rect x="470" y="255" width="130" height="46" rx="12" fill="#16a34a"/><text x="505" y="285" font-family="sans-serif" font-size="19" font-weight="700" fill="#fff">选线程</text>
+  <rect x="825" y="135" width="320" height="200" rx="16" fill="#fff7ed" stroke="#fb923c" stroke-width="2"/>
+  <text class="card" x="855" y="180">两类需求同时存在</text><text class="small" x="855" y="215">边界隔离，边界内高频协作</text>
+  <rect x="855" y="255" width="220" height="46" rx="12" fill="#ea580c"/><text x="885" y="285" font-family="sans-serif" font-size="19" font-weight="700" fill="#fff">进程内使用线程</text>
+  <path d="M215 360 H985" stroke="#cbd5e1" stroke-width="2"/>
+  <text class="text" x="315" y="400">选择线程后，必须继续定义共享状态、同步规则和任务生命周期。</text>
+</svg>

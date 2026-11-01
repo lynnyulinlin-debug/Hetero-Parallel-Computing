@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+  <title id="title">正常推进、死锁与活锁的时间线</title>
+  <desc id="desc">正常路径持续完成任务，死锁停在等待状态，活锁不断重试但不完成任务。</desc>
+  <style>.title{font:700 28px sans-serif;fill:#172033}.sub,.text{font:17px sans-serif;fill:#475569}.head{font:700 21px sans-serif;fill:#172033}.label{font:700 17px sans-serif;fill:#fff}.note{font:700 16px sans-serif;fill:#9a3412}</style>
+  <rect width="1200" height="480" fill="#f8fafc"/>
+  <text class="title" x="55" y="58">系统是否推进：同时观察完成任务与等待、重试行为</text>
+  <text class="sub" x="55" y="88">线程是否忙碌不是判断标准；完成任务数是否增长才是。</text>
+  <text class="head" x="55" y="160">正常推进</text><path d="M190 153 H1100" stroke="#cbd5e1" stroke-width="3"/>
+  <rect x="230" y="128" width="140" height="48" rx="12" fill="#16a34a"/><text class="label" x="258" y="159">完成任务 1</text><rect x="470" y="128" width="140" height="48" rx="12" fill="#16a34a"/><text class="label" x="498" y="159">完成任务 2</text><rect x="710" y="128" width="140" height="48" rx="12" fill="#16a34a"/><text class="label" x="738" y="159">完成任务 3</text><text class="text" x="900" y="160">完成数持续增加</text>
+  <text class="head" x="55" y="270">死锁</text><path d="M190 263 H1100" stroke="#cbd5e1" stroke-width="3"/>
+  <rect x="230" y="238" width="180" height="48" rx="12" fill="#dc2626"/><text class="label" x="265" y="269">等待另一把锁</text><path d="M410 262 H720" stroke="#dc2626" stroke-width="3" stroke-dasharray="9 8"/><text class="note" x="500" y="252">一直等待</text><text class="text" x="790" y="270">完成数不增加</text>
+  <text class="head" x="55" y="380">活锁</text><path d="M190 373 H1100" stroke="#cbd5e1" stroke-width="3"/>
+  <rect x="230" y="348" width="100" height="48" rx="12" fill="#f97316"/><text class="label" x="254" y="379">重试</text><path d="M330 372 H390" stroke="#f97316" stroke-width="3" marker-end="url(#arrow)"/><rect x="390" y="348" width="100" height="48" rx="12" fill="#f97316"/><text class="label" x="414" y="379">让步</text><path d="M490 372 H550" stroke="#f97316" stroke-width="3" marker-end="url(#arrow)"/><rect x="550" y="348" width="100" height="48" rx="12" fill="#f97316"/><text class="label" x="574" y="379">重试</text><path d="M650 372 H710" stroke="#f97316" stroke-width="3" marker-end="url(#arrow)"/><text class="text" x="770" y="380">重试数增加，完成数不增加</text>
+  <defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#f97316"/></marker></defs>
+</svg>
